@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Marcellus+SC');
+@import url('https://fonts.googleapis.com/css?family=Pridi');
+body {
+      font-family: 'Marcellus SC', serif;
+      color: #000000;
+}
+
+body {
+    color: #000000;
+   
+    background-image: url("../img/Pilvet1.jpg");
+    margin: 0px;
+}
+
+h1 {
+    color: #000000;
+    font-family: 'Marcellus SC';
+    text-align: center;
+    font-size: 70px;
+    color: whitesmoke;
+}
+
+.flex-container {
+    display: flex;
+    padding-right: 4%;
+    padding-left: 4%;
+}
+    
+.flex-item {
+    flex: 1;
+    padding: 5px;
+}
+a {
+    font-family: 'Marcellus SC';
+    color: black;
+    font-size: 30px;
+    color: whitesmoke;
+}
+.link:hover {
+    cursor: crosshair;
+    opacity: 0.6 !important;
+}
+
+#link-container {
+    text-align: center;
+}

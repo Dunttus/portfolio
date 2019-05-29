@@ -1,2 +1,2 @@
-# portfolio
-Joni Hakala Portfolio URL: http://dunttus.com
+# Joni Hakala portfolio
+Site hosted at www.dunttus.com
