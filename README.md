@@ -1,2 +1,2 @@
 # Joni Hakala portfolio
-Site hosted at www.dunttus.com
+Site hosted at http://dunttus.com
