@@ -137,7 +137,6 @@ ssh-keygen			<--->	Luo julkisen ja salaisen avaimen
 ssh-copy-id joni@localhost	<--->	Kopioi local hostiin avaimen
 
 Enter file in which to save the key (/home/xubuntu/.ssh/id_rsa):	<--->	Salainen avain
-
 rsa.pub julkinen avain							<--->	Julkinen avain
 
 ________________________________________________________________________________________________________________________________
@@ -193,7 +192,7 @@ chmod u+rw hei.sh		<--->	User read ja write oikeudet tiedostolle hei.sh
 chmod ugo+x hei.sh		<--->	Kaikkille oikeudet execute
 ls /usr/local/bin/		<--->	Kansio kaikkille kayttajille
 
-which bash			<--->	Kertoo mistä bash ajetaan
+which bash			<--->	Kertoo mistä bash ajetaan /bin/bash
 
 nano hei.py			<--->	Luo teksti tiedoston johon voidaan kirjoittaa pyhthonia
 phython3 hei.py			<--->	Avaa phythonin tulkin
