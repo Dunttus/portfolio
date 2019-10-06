@@ -20,6 +20,14 @@ h1 {
     color: whitesmoke;
 }
 
+h3 {
+    color: #000000;
+    font-family: 'Marcellus SC';
+    font-size: 35px;
+    color: whitesmoke;
+}
+
+
 .flex-container {
     display: flex;
     padding-right: 4%;

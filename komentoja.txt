@@ -149,7 +149,8 @@ GITHUB
 git clone https://github.com/Dunttus/portfolio.git	<--->	Oman git sivun cloonaus linkki
 
 SSHFS
-sshfs user@104.248.26.65: kansio:			<--->   Graaffinen valikointi
+sudo mkdir /mnt/kansionimi				<--->	Luodaan ensin kansio
+sshfs user@104.248.26.65: /mnt/kansionimi:		<--->   Graaffinen valikointi
 fusermount -u kansio					<--->   Irrottaa mount pointin
 
 ________________________________________________________________________________________________________________________________
@@ -192,7 +193,7 @@ chmod u+rw hei.sh		<--->	User read ja write oikeudet tiedostolle hei.sh
 chmod ugo+x hei.sh		<--->	Kaikkille oikeudet execute
 ls /usr/local/bin/		<--->	Kansio kaikkille kayttajille
 
-which bash			<--->	Kertoo mistä bash ajetaan /bin/bash
+which bash			<--->	Kertoo mistä bash ajetaan
 
 nano hei.py			<--->	Luo teksti tiedoston johon voidaan kirjoittaa pyhthonia
 phython3 hei.py			<--->	Avaa phythonin tulkin
@@ -243,8 +244,35 @@ mariadb --user=käyttäjännimi --password
 
 SOURCES:
 Pohjana Tero Karvinen 2012: Linux kurssi, http://terokarvinen.com
+________________________________________________________________________________________________________________________________
+** CISCO tietoverkot **
 
+________________________________________________________________________________________________________________________________
+** Cisco Kytkimien configurointi **
+enable                                  <--->   Avaa reititimeen admin asetuksia
+set                                     <--->   Automatisoitu configurointi
+show running-config                     <--->   Näyttää asetuksia
+show ip route                           <--->   Tietoja reitityksistä
+show ip interfaces brief                <--->   Tietoa ip intefaceista
+show interfaces                         <--->   Tietoa intefaceista
+show ipv6 interface                     <--->   ipv6 samat komennot
+hostname nimi                           <--->   Vaihtaa kytkimine nimen
+enable secret class                     <--->   Encryptaa salasanan
+line console 1                          <--->   Siirtyy consoleen
+password salasana                       <--->   Määrittää consoleen salasanan
+login                                   <--->   Kirjautuminen
+exit                                    <--->   Console yhteyden sulkeminen
+service password-encryption             <--->   Encryptaa salasanan
+copy running-config startup-config      <--->   Kopioi tämän hetkiset asetukset
 
+configure terminal                      <--->   Konfigurointi mode
+interface gigabitethernet 0/0           <--->   Tietyn kytkin portin configurointi
+interface serial 0/0/0                  <--->   Serial kytkimen configurointi
+interface loopback 0                    <--->   Loopback osoiteen configurointi
+ip address 10.10.10.1 255.255.255.0     <--->   Ip osoite ja maski
+ipv6 address 2001::1/64                 <--->   Ipv 6 osoite ja maski
+no shutdown                             <--->   Vaihdettu ip saadaan käyttöön
+exit
 
 ********************************************************************************************************************************
 ********************************************************************************************************************************
@@ -360,6 +388,78 @@ Window Salt repo 2019: https://docs.saltstack.com/en/latest/topics/windows/windo
 
 ********************************************************************************************************************************
 ********************************************************************************************************************************
+
+
+________________________________________________________________________________________________________________________________
+
+PYTHON ALKEET
+________________________________________________________________________________________________________________________________
+
+
+** Python 3 IDLE **
+CTRL+N                                                  <--->   Avaa uuden ikkunan IDLE:ssa
+CTRL+K                                                  <--->   Poistaa rivin
+CTRL+F6                                                 <--->   Idlen uudelleenkäynnistys
+F5                                                      <--->   Ajaa koodin
+
+** Python alkeet **
+\                                                       <--->   \ enter jatkaa kommenttia toiselle riville jos  se on liian pitkä
+(""" -komentti """)                                     <--->   Voidaan myös jatkaa toiselle riville
+#                                                       <--->   Python kommentti
+# -*- coding: cp1252 -*-                                <--->   Tulkille kerrotaan että koodissa skandinaavisia kirjaimia
+
+** Print **
+print("asd") #kommentti                                 <--->   Kommentti voidaa laittaa samalle riville
+print("HelloWorld")                                     <--->   Printtaus pythonilla
+print("rivin vahto. \n")                                <--->   Tulostus ja tyhjä rivi
+print("muuttuja")                                       <--->   Muuttujan printtaus
+print("Torstaisin ruokana on pannukakkua ja",muuttuja)  <--->   Muuttujan ydistäminen
+print("Seinällä on",muuttuja,"muuttuja."                <--->   2 Muuttujaa
+print(muuttuja+"!")                                     <--->   Muuttujaan liimaus
+print("Ei tule rivinvaihtoa. ",end="")                  <--->   Seuraavalle printille ei rivin vaihtoa
+print("Minulla on",muuttuja,"kappaletta.", sep="")      <--->   sep ottaa välit muuttujan ympäriltä pois
+print("Nimi:\tHakala Joni")                             <--->   \t tekee tab välin tulostuksessa
+
+** muuttujat **
+muuttuja = "pizza"	                                <--->   Pythyon muuttujan nimi ei saa alkaa numerolla, ei skandeja, ei erikois merkkejä, varattuja sanoja
+muuttuja = "rivin vahto. \n"                            <--->   \n tekee muuttujan perään tyhjän rivin
+numero = 100                                            <--->   Numero muuttuja ilman ""
+numero = "100"                                          <--->   Numero Stringinä
+numero = int(numero)                                    <--->   Muuntaa arvon intiksi
+numero = str(numero)                                    <--->   Muuntaa arvon Strigiin
+numero = float(numero)                                  <--->   Muuntaa arvon desimaaliksi
+luku1 = 5.123                                           <--->   Luku muuttuja
+luku1 = round(luku1)                                    <--->   Luku muuttujan pyöristäminen
+len(muuttuja)                                           <--->   Laskee merkit muuttujasta
+numero + 150                                            <--->   Numero muuttujaan + 150
+
+** Input **
+lukuarvo = input("Kuinka vanha olet:")                  <--->   Kysyy käyttäjältä muuttuja arvon
+kierroksia = int(input("Kuinka monta kierrosta: "))     <--->   Int input arvo
+
+** Imports **
+import random                                           <--->   Tuo kirjaston random
+luku = random.randint(0,100)                            <--->   Print("luku") käyttää random kirjastoa ja arpoo luvun
+dir(random)                                             <--->   Näyttää eri funkioita random importissa
+help(random.randint)                                    <--->   Apua import toimintoon
+from random import randint                              <--->   Yhden funktion import
+import omatiedosto                                      <--->   omatiedosto.py import samalta kiintolevyltä
+print(omatiedosto.funktio)                              <--->   omatiedosto.py importista funktio haku
+
+** Tiedostojen avaus **
+tiedosto = open("testi.txt", "r")                       <--->   Avaa tiedotston testi.txt "r" avaa luku tilaan
+tiedosto = open("testi.txt", "w")                       <--->   Avaa tiedoston kirjoitus tilaan
+tiedosto = open("testi.txt", "a")                       <--->   Avaa tiedoston kirjoiutus tilaan ja luo tiedoston
+tiedosto = open("testi.txt", "rb")                      <--->   Avaa tiedoston luku tilaan ja jos tiedostoa ei ole antaa error
+tiedosto.close()                                        <--->   Sulkee tiedoston
+tallennusmuuttuja = tiedostokahva.lukufunktio()         <--->   Muuttuja funktiolla
+
+def myfunktio():                                        <--->   Funktio määritellään sanalla def
+
+
+********************************************************************************************************************************
+********************************************************************************************************************************
+
 
 !!! Penetration Testing kohdan käytetyt menetelmät ovat väärin käytettynä laittomia, käytä omalla vastuulla. !!!
 ________________________________________________________________________________________________________________________________
