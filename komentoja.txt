@@ -4,11 +4,13 @@ Linux Palvelimet komentoja
 ________________________________________________________________________________________________________________________________
 *** ALKU KOMENNOT ***
 setxkbmap fi		<--->	Vaihtaa suomi nappaimiston
-sudo apt-get update	<--->	Tuo palvelimelle versio tiedot
-sudo apt-get upgrade	<--->	Päivittää ohjelmistoja
+sudo			<--->	Jarjestelman valvojana suoritettavat komennot
 uname -a		<--->	Kayttojarjestelman versio
 lshw -short -sanitize	<--->	Laitteisto
 ifconfig		<--->	Ip tietoja
+hostname -I		<--->	Omat IPt
+nano			<--->	Normaali kayttajan teksti editori
+sudoedit		<--->	Sudo kayttaja editori
 passwd			<--->	Salasana xubuntu live tikulle
 
 ________________________________________________________________________________________________________________________________
@@ -18,105 +20,103 @@ sudo apt-get install bcmwl-kernel-source	<--->	Lataa langatoman adapterin
 
 ________________________________________________________________________________________________________________________________
 *** KANSIOT LINUXIIN ***
-ls			<--->	Listaa hakemiston tiedostot
-ls -a			<--->	Listaa myos hidden folderit
-ls -l			<--->	Nayttaa oikeudet
-pwd			<--->	Listaa taman hetkisen hakemiston
+ls			<--->	Listaa nykyisen hakemiston tiedostot
+ls -a			<--->	Listaa myos hidden folderit all toiminolla
+ls -l			<--->	Nayttaa tiedostojen oikeudet
+pwd			<--->	Listaa taman hetkisen hakemiston "print working directory"
+
 mkdir kansionnimi	<--->	Luo kansion
 mkdir -p /kansio/kansio	<--->	Luo myos ali kansiot
-nano text.txt		<--->	Luo teksti tiedoston
-cd var			<--->	Menee tiettyyn tiedostoon esim cd var menee var kansioon
-cd			<--->	Pelkka cd menee takaisin home kansioon
+
+cd /			<--->	Menee tiettyyn tiedostoon esim cd / menee / kansioon
+cd /var/log		<--->	Menee log kansioon
+cd			<--->	Pelkka cd menee takaisin käyttäjän omaan home kansioon
 cd ..			<--->	Menee takaisin pain hakemistossa
-less			<--->	Haku komento, joka tuo yhdensivun kerralla
-etc			<--->	kaikki asetukset
-find			<--->	hakee tiedostoja
+TAB			<--->	TAB automaattisesti tayttaa kansioita valitaessa
+
+chmod ugo+rwx		<--->	Read write ja execute oikeus. user group ja other kayttajille
 mv oldname newname	<--->	Vaihtaa tiedoston nimen
 rm tiedosto		<--->	Poistaa tiedoston
-sudo rm -r kansio	<--->	Poistaa kansion
+rm -r kansio		<--->	Poistaa kansion
 mv tiedostonnimi kansio/<--->	Vie tiedoston toiseen kansioon
 cp tiedostonnimi kansio/<--->	Kopioi tiedoston toiseen kansioon
-man ls			<--->	Tuo terminaaliin ohjekirjan ls toiminnosta
-history			<--->	Nayttaa vanhat kommennot
-/var/log/auth.log	<--->	Kirjautumis loki kansio
-fg			<--->	Tuo ctrl+Z suljetun tiedoston takaisin
+cp -rp			<--->	RP lipuilla kopioidaan myos tiedoston oikeudet
+
+/etc			<--->	kaikkien ohjelmien asetuksien kansio
+/var/log/auth.log	<--->	Kirjautumis loki tiedosto
 
 ________________________________________________________________________________________________________________________________
 *** HAKUTOIMINTO *** 
-grep nimi		<--->	 Hakee tietueesta hakusanalla
-grep -ir		<--->	 Ir on textin luku ohjelma
-
 alt+.			<--->   viimeisen komennon viimeinen sana
+less teksti.txt		<--->	Haku komento, joka tuo yhdensivun kerralla
+tail teksti.txt -F	<--->	Avaa tiedoston 10viimeista rivia ja -F paivittaa tietoja
+cat teksti.txt		<--->	Avaa tiedoton sisällön
+history			<--->	Nayttaa vanhat kommennot
 
-tail tietueennimi -F	<--->	 Avaa tietueen 10viimeista rivia ja -F paivittaa tietoja
+"|" putki merkki	<--->	Liimataan komentoja 
+| grep haku		<--->	Hakee tietueesta hakusanalla
+| grep -ir haku		<--->	Haku paremmalla rivityksellä
 
-| putki merkki		<--->	 Liimataan komentoja 
-
+find -printf "%T+ %p\n"|sort				<--->   Kertoo asennetujne ohjelmien ajan jarjesteksyssa
+find -printf '%T+ M %p\n%A+ A %p\n%C+ C %p\n'|sort	<--->	Kertoo asennettujen ohjelmien ajan jarjestyksessa
+find /home -printf "%f\t%p\t%u\t%g\m\n" | column -t	<--->	Hakee home kansion kaikki tiedostot
 ________________________________________________________________________________________________________________________________
 *** TIEDOSTOJEN LATAUS ***
-sudo apt-get update			<--->	Paivittaa tamanhetkiset ohjelmisto versiot
-apt-cache search ohjelmannimi		<--->	Etsii ohjelmistoja
-sudo apt-get install ohjelmannimi	<--->	Asentaa ohjelmiston
-sudo apt-get remove ohjelmannimi	<--->	Poistaa ohjelmiston
-sudo apt-fer purge ojelmnnimi		<--->	Poistaa ohjelmiston ja asetukset
+apt-get update			<--->	Paivittaa palvelimelle ohejelmitojen versio tiedot
+apt-get upgrade			<--->	Paivittaa ohjelmistot
+apt-get dist-upgrade		<--->	Kernel paivitykset
 
-________________________________________________________________________________________________________________________________
-*** OHJELMIA ***
-sudo apt-get install	<--->	Turvallinen tapa asentaa ohjelmia
-shutter			<--->	Snappintool
-gimp			<--->	Kuvan muokkaus
-nautilus		<--->	Tiedonhallinta jossa FTP
-clawAv			<--->	Virusturva
-clawTk			<--->	Clamav graafinen kayttoliittyma
-deluge			<--->	Torrent
-vlc			<--->	Videon toisto
-apache2			<--->	Apache2
+apt-cache search ohjelmannimi	<--->	Etsii ohjelmistoja
+apt-get install ohjelmannimi	<--->	Asentaa ohjelmiston
+apt-get remove ohjelmannimi	<--->	Poistaa ohjelmiston
+apt-fer purge ojelmnnimi	<--->	Poistaa ohjelmiston ja asetukset
 
-sudo snap-install	<--->	 Ei niin turvallinen tapa asentaa ohjelmia
-Discord			<--->	 VoIP
+sudo apt-get install apache2	<--->	Turvallinen tapa asentaa ohjelmia
+sudo snap-install		<--->	Ei niin turvallinen tapa asentaa ohjelmia
+
+systemctl restart ohjnimi	<--->	Uudelleen kaynnistys ohjelmalle
+reboot				<--->	Uudelleen kaynnistys koko Linuxille
+man ohjnimi			<--->	Manual sivu asennetusta ohjelmistosta
 
 ________________________________________________________________________________________________________________________________
 *** LINUX PIKA NAPPAIN ***
 CTRL + C		<--->	Yleisesti sulkee ohjelmia
 WINDOWS + T		<--->	Avaa terminaalin
 WINDOWS + Z		<--->	Sammuttaa toimintoja ilde tilaan takaisin "fg"
+fg			<--->	Tuo ctrl+Z suljetun tiedoston takaisin
+q			<--->	Yleisesti sulkee ohjelmia
 
 ________________________________________________________________________________________________________________________________
 *** APACHE, UFW PALOMUURI JA PHP ***
-sudo ufw enable					<--->	Palomuuri paalle, jos etayhteys paallä ssh yhteys voi katketa
-sudo ufw allow 22/tcp				<--->	Ssh paalle
-sudo ufw allow 80/tcp				<--->	Html portti paalle
+sudo ufw enable					<--->	Palomuuri paalle, jos etayhteys paalla ssh yhteys voi katketa
+sudo ufw allow 22/tcp				<--->	Ssh default portti auki
+sudo ufw allow 80/tcp				<--->	Apachen default portti auki
+sudo ufw deny 22/tcp				<--->	Ssh default portin sulkeminen
 sudo ufw status vebose				<--->	Tulimuurin status ja verbose luottavassa muodossa
-ssh a1800@myy.haaga-helia.fi			<--->	SSH yhteys haagaheliaan
-sudoedit index.html				<--->	Sudo oikeuden editointi
-echo hei					<--->	Echo testi
-echo hei | sudo tee /var/www/html/index.html	<--->	Korvaa apache testisivun sanalla hei
-sudo a2enmod userdir				<--->	Oikeudet kayttajille
-chmod ugo+rwx					<--->	Read write ja execute oikeus kaikkille
 
-/home/xubuntu/public_html/index.htlm		<--->	Html sivun koti hakemisto
-http://localhost/~xubuntu/			<--->	Mozilla firefox hakee sivun
+nc -vz ip portti                                <--->   Yhden portin scannaus netcatilla
+netstat -tulpn					<--->   Avoimet portit
+
+ssh user@domain.com				<--->	SSH yhteys default 22 portiin
+
+echo hei | sudo tee /var/www/html/index.html	<--->	Korvaa apache testisivun sanalla hei
+sudo a2enmod userdir				<--->	Käyttäjien oma public_html kansio käyttöön
+/home/user/public_html/index.htlm		<--->	Html sivun koti hakemisto, a2enmod userdir
+http://localhost/~user/				<--->	Selaimella kayttajan kansion sivuun
 systemctl restart apache2			<--->	Uudelleenkäynnistää apachen2
 
-vaida index.php					<--->	Jotta saadaan php kayttoon vaihdataan nimi
-apache2 ja php					<--->	Tarvittavat ohjelmat
-libapache2-mod-php				<--->	Php apacheen
-cd/etc/apache2/					<--->	Asetukset
-etc						<--->	Yleinen asetus kansio
-grep -ir php					<--->	Hakee grepila php
-nano						<--->	Normaali kayttajan teksti editori
-sudoedit					<--->	Sudo kayttaja editori
-grep -i -r php					<--->	Hakee grep php
+index.php					<--->	Jotta saadaan php kayttoon vaihdataan pääte .php
+libapache2-mod-php				<--->	Php lisaosa apacheen
+cd/etc/apache2/					<--->	Asetukset apacheen
 <?php print(1+1)?>				<--->	Esimerkki php koodista jos HTML sivule tulee 2 php on paalle
-sudo ufw allow 22/tcp				<--->	Palomuuri auki portille 22/tcp
 
 ________________________________________________________________________________________________________________________________
 *** SSH ROOT JA KAYTTAJIEN LUONTI ***
-sudo apt-get install -y openssh-client openssh-server
+apt-get install openssh-client openssh-server	<--->	Open-ssh asennus paketit
 
 hostname -I					<--->	Koneen Ip osoite 4 ja 6
 ssh root@104.248.26.65				<--->	Aluksi yhteys root kayttajalla
-ssh user@dunttus.com -p 2121			<--->	Jos SSHn portti vaihdettu
+ssh user@dunttus.com -p 2121			<--->	Jos SSHn portti vaihdettu vaikka 2121
 
 sudo adduser joni				<--->	Luo kayttajan joni
 sudo adduser joni sudo				<--->	Lisaa kayttajalle joni sudo oikeuden
@@ -129,15 +129,14 @@ sudoedit sshd_config				<--->	PermitRootLogin vaihdetaan taalta "no"
 sudo service ssh restart			<--->	SSH uudelleen käynnistys = asetukset tulee voimaan
 host dunttus.com dnsl.registrar-server.com	<--->	Talla voidaan katsoa hostin tietoja
 sudo a2ensite dunttus-com.conf			<--->	Lisaa tiedoston conf tiedostoon
-netstat	-tulpn					<--->	Avoin portti
 
 ________________________________________________________________________________________________________________________________
 *** JULKINEN JA SALAINEN AVAIN ***
-ssh-keygen			<--->	Luo julkisen ja salaisen avaimen
-ssh-copy-id joni@localhost	<--->	Kopioi local hostiin avaimen
+ssh-keygen					<--->	Luo julkisen ja salaisen avaimen
+ssh-copy-id joni@localhost			<--->	Kopioi local hostiin avaimen
 
-Enter file in which to save the key (/home/xubuntu/.ssh/id_rsa):	<--->	Salainen avain
-rsa.pub julkinen avain							<--->	Julkinen avain
+Enter file in which to save the key (/home/user/.ssh/id_rsa):	<--->	Salainen avain
+rsa.pub julkinen avain						<--->	Julkinen avain
 
 ________________________________________________________________________________________________________________________________
 *** TIEDONSIIRTO ***
@@ -145,11 +144,15 @@ RSYNC
 rsync nimi.txt joni@dunttus.com:			<--->	Tekstin kopiointi
 rsync -vazh --progress kansio joni@dunttus.com		<--->	v - komento vastaa h - human readeble
 
+SCP
+scp "tiedosto" joni@dunttus.com:/home/joni		<--->	Tiedoston siirto scp
+scp -P 2020 -r "tiedosto" joni@104.248.26.65:/home/joni <--->	Tiedon siirto Windows feature bashilta portiin 2020
+
 GITHUB
 git clone https://github.com/Dunttus/portfolio.git	<--->	Oman git sivun cloonaus linkki
 
 SSHFS
-sudo mkdir /mnt/kansionimi				<--->	Luodaan ensin kansio
+mkdir /mnt/kansionimi					<--->	Luodaan ensin kansio
 sshfs user@104.248.26.65: /mnt/kansionimi:		<--->   Graaffinen valikointi
 fusermount -u kansio					<--->   Irrottaa mount pointin
 
@@ -192,23 +195,21 @@ ls -l hei.sh			<--->	Nayttaa oikeudet tiedostosta hei.sh
 chmod u+rw hei.sh		<--->	User read ja write oikeudet tiedostolle hei.sh
 chmod ugo+x hei.sh		<--->	Kaikkille oikeudet execute
 ls /usr/local/bin/		<--->	Kansio kaikkille kayttajille
-
 which bash			<--->	Kertoo mistä bash ajetaan
 
 nano hei.py			<--->	Luo teksti tiedoston johon voidaan kirjoittaa pyhthonia
 phython3 hei.py			<--->	Avaa phythonin tulkin
 CTRL+D				<--->	Sulkee phytonin
 print("heii")			<--->	Tulostaa heii
-HELLOWORLD KARVINEN java go ja c kielet
 
 ________________________________________________________________________________________________________________________________
 *** SSH PROXY ***
-hostname -I			<--->	Nayttaa ipn
+hostname -I			<--->	Nayttaa ipt
 SOCK5				<--->	SSH proxy ominaisuuden nimi
 ssh -D 2020 nimi@osoite		<--->	SSH proxy yhteys tahan tarvitaan viela firefox asetukset
 nc -vz localhost 9080		<--->	Portin avaus nc=netcat
 Firefox				<--->	Firefox asetuksista manual proxy vain SOCKS host = localhost
-FoxyProxxy			<--->	Jos monta proxya
+FoxyProxxy			<--->	Hyodyllinen jos sivut blockaa proxy yhteyksia
 
 ________________________________________________________________________________________________________________________________
 ** TMUX **
@@ -218,15 +219,10 @@ Prefix+ numero			<--->	vaihtaa sivun
 Prefix+d			<--->	Deletoi ikkunan
 
 ________________________________________________________________________________________________________________________________
-*** GOOGLE SCHOLAR ***
-settings			<--->	Kieli Englanti, library links Haaga-Helia
-
-________________________________________________________________________________________________________________________________
-*** KÄYTTÄJÄT *** 
+*** USERS PASSWORDS *** 
 jhakala tai joni		<--->	Esimerkki käytäjä, max 8merk, a-z, alkaa kirjaimella.
-pavahx6Ousoh			<--->	Hyvä alkusalasan on random ja kirjoitetaan muistiin. 
-nano salasanat.txt		<--->	Salasana kansio
-ls -ld salasanat.txt		<--->	Oikeudet
+pavahx6Ousoh			<--->	Hyvä alkusalasan on satunainen ja kirjoitetaan muistiin. 
+ls -ld salasanat.txt		<--->	Oikeudet salasana teksti tiedostolle
 chmod og-rwx salasanat.txt	<--->	Poistaa oikeudet read write execute
 sudo adduser joni		<--->	Luo käyttäjän joni
 pwgen 12 2			<--->	Generoi 12 merkkin salasanan 2 kertaa
@@ -244,10 +240,17 @@ mariadb --user=käyttäjännimi --password
 
 SOURCES:
 Pohjana Tero Karvinen 2012: Linux kurssi, http://terokarvinen.com
+
+********************************************************************************************************************************
+********************************************************************************************************************************
+
+
 ________________________________________________________________________________________________________________________________
+
 ** CISCO tietoverkot **
 
 ________________________________________________________________________________________________________________________________
+
 ** Cisco Kytkimien configurointi **
 enable                                  <--->   Avaa reititimeen admin asetuksia
 set                                     <--->   Automatisoitu configurointi
@@ -283,9 +286,9 @@ Palvelinten Hallinta komentoja
 ________________________________________________________________________________________________________________________________
 ** SALT **
 sudo apt-get -y install salt-master     <--->   Asentaa salt masterin
-sudo apt-get -y install salt-minion     <--->   Asentaa salt orjan
+sudo apt-get -y install salt-minion     <--->   Asentaa salt minionin
 
-sudoedit /etc/salt/minion               <--->   Kansio johon lisataan masterin ip
+sudoedit /etc/salt/minion               <--->   Kansio, johon lisataan masterin ip
 master: 10.0.0.0                        <--->   Salt master rivi tiedostossa minion
 id: orjaid				<--->	Orjalle id minion tiedostoon mastrin alle 
 systectl restart salt-minion            <--->   Uudelleen kaynnistaa salt minionin
@@ -299,8 +302,11 @@ sudo salt '*' grains.items              <--->   Kysyy orjilta tietoja
 sudo salt '*' pkg.install apache2       <--->   Asentaa orjalle paketin apache2
 sudo salt '*' sys.doc|less              <--->   Generoi saltista dokumentin
 
+/srv/salt/				<--->	Salt tilojen default kansio masterilla
+top.sls					<--->	Avaa kansionimen perusteella init.sls tiedoston
+init.sls				<--->	Init.sls tiedosto sisältää ohjeet minion koneille esim. Asennus paketit
  _______________________
-|srv/salt/top.sls       |               <--->   tunti harjoitus top.sls tiedoston sisältö
+|srv/salt/top.sls       |               <--->   Perus top.sls tiedoston sisältö
 |base:                  |
 |  '*':                 |
 |    - hello            |
@@ -308,24 +314,17 @@ sudo salt '*' sys.doc|less              <--->   Generoi saltista dokumentin
 |    - webdev           |
 |_______________________|
  _______________________
-|/tmp/webdev.txt:       |		<--->   init.sls tiedoston sisältö
+|/tmp/webdev.txt:       |		<--->   Perus init.sls tiedoston sisältö
 |  curl:                |
 |    pkg.installed      |
 |  apache2              |
 |    pkg.installed      |
 |_______________________|
 
-sudo salt '*' sys.state_doc             <--->   Generoi documentin koneelle
+sudo salt '*' sys.state_doc             <--->   Generoi documentin koneelle omien asetuksien mukaan
 
 
 /var/lib/salt/pki/minion/minion_master.pub      <--->   Orja koneen kansiossa palvelimen julkinen avain
-nc -vz ip portti                                <--->   Yhden portin scannaus netcatilla
-
-________________________________________________________________________________________________________________________________
-**FIND KOMENTO**
-sudo find -printf "%T+ %p\n"|sort			<--->   Kertoo asennetujne ohjelmien ajan jarjesteksyssa
-sudo find -printf '%T+ M %p\n%A+ A %p\n%C+ C %p\n'|sort	<--->	Kertoo asennettujen ohjelmien ajan jarjestyksessa
-find /home -printf "%f\t%p\t%u\t%g\m\n" | column -t	<--->	Hakee home kansion kaikki tiedostot
 
 ________________________________________________________________________________________________________________________________
 **GIT VERSIO HALLINTA**
@@ -342,12 +341,12 @@ git reset --hard			<--->   Menee takaisinpäin versioissa merkilla # voi komment
 
 git clone URL				<--->   Kopioi repositoryn omalle koneelle
 pull push				<--->   Ensin pull sitten push
-Kommentit Eng				<--->   Git kommentit aina Englaniksi
 meld tool				<--->   Mergin tool git tiedostoille
 git rm					<--->   Git poisto komento
 
 sudo git add .; sudo git commit -a -m "COMMENT"; sudo git pull; sudo git push
 sudo git add . && sudo git commit -a -m "COMMMENT" && sudo git pull && sudo git push
+git add . && git commit -a -m "COMMMENT" && git pull && git push
 
 ________________________________________________________________________________________________________________________________
 ** VirtualBox Vagrant **
@@ -389,12 +388,10 @@ Window Salt repo 2019: https://docs.saltstack.com/en/latest/topics/windows/windo
 ********************************************************************************************************************************
 ********************************************************************************************************************************
 
-
 ________________________________________________________________________________________________________________________________
 
 PYTHON ALKEET
 ________________________________________________________________________________________________________________________________
-
 
 ** Python 3 IDLE **
 CTRL+N                                                  <--->   Avaa uuden ikkunan IDLE:ssa
@@ -402,6 +399,7 @@ CTRL+K                                                  <--->   Poistaa rivin
 CTRL+F6                                                 <--->   Idlen uudelleenkäynnistys
 F5                                                      <--->   Ajaa koodin
 
+________________________________________________________________________________________________________________________________
 ** Python alkeet **
 \                                                       <--->   \ enter jatkaa kommenttia toiselle riville jos  se on liian pitkä
 (""" -komentti """)                                     <--->   Voidaan myös jatkaa toiselle riville
@@ -420,32 +418,43 @@ print("Ei tule rivinvaihtoa. ",end="")                  <--->   Seuraavalle prin
 print("Minulla on",muuttuja,"kappaletta.", sep="")      <--->   sep ottaa välit muuttujan ympäriltä pois
 print("Nimi:\tHakala Joni")                             <--->   \t tekee tab välin tulostuksessa
 
+________________________________________________________________________________________________________________________________
 ** muuttujat **
-muuttuja = "pizza"	                                <--->   Pythyon muuttujan nimi ei saa alkaa numerolla, ei skandeja, ei erikois merkkejä, varattuja sanoja
-muuttuja = "rivin vahto. \n"                            <--->   \n tekee muuttujan perään tyhjän rivin
+muuttuja = "pizza"	                                <--->   Pythyon muuttujan, ei skandeja, erikois merkkejä, varattuja
+muuttuja = "rivin vahto. \n"                            <--->   \n tekee muuttujan peraan tyhjan rivin
 numero = 100                                            <--->   Numero muuttuja ilman ""
-numero = "100"                                          <--->   Numero Stringinä
+numero = "100"                                          <--->   Numero Stringina
 numero = int(numero)                                    <--->   Muuntaa arvon intiksi
 numero = str(numero)                                    <--->   Muuntaa arvon Strigiin
 numero = float(numero)                                  <--->   Muuntaa arvon desimaaliksi
 luku1 = 5.123                                           <--->   Luku muuttuja
-luku1 = round(luku1)                                    <--->   Luku muuttujan pyöristäminen
+luku1 = round(luku1)                                    <--->   Luku muuttujan pyoristaminen
 len(muuttuja)                                           <--->   Laskee merkit muuttujasta
 numero + 150                                            <--->   Numero muuttujaan + 150
 
+________________________________________________________________________________________________________________________________
 ** Input **
 lukuarvo = input("Kuinka vanha olet:")                  <--->   Kysyy käyttäjältä muuttuja arvon
 kierroksia = int(input("Kuinka monta kierrosta: "))     <--->   Int input arvo
 
+________________________________________________________________________________________________________________________________
 ** Imports **
 import random                                           <--->   Tuo kirjaston random
-luku = random.randint(0,100)                            <--->   Print("luku") käyttää random kirjastoa ja arpoo luvun
-dir(random)                                             <--->   Näyttää eri funkioita random importissa
+luku = random.randint(0,100)                            <--->   Print("luku") kayttaa random kirjastoa ja arpoo luvun
+dir(random)                                             <--->   Näyttaa eri funkioita random importissa
 help(random.randint)                                    <--->   Apua import toimintoon
 from random import randint                              <--->   Yhden funktion import
 import omatiedosto                                      <--->   omatiedosto.py import samalta kiintolevyltä
 print(omatiedosto.funktio)                              <--->   omatiedosto.py importista funktio haku
 
+________________________________________________________________________________________________________________________________
+** errors **
+except Exception:                                       <--->   Virhetilanteiden jokeri luokka printaa oma syote printillä alle
+try:                                                    <--->   Ajaa koodin ja katsoo tuleeko virheitä oma syote printillä alle
+finally:                                                <--->   Lopetetaan ohkjelma jos tapahtuu virhe oma syote printillä alle
+class OmaVirhe(Exception):                              <--->   Virhe luokassa
+
+________________________________________________________________________________________________________________________________
 ** Tiedostojen avaus **
 tiedosto = open("testi.txt", "r")                       <--->   Avaa tiedotston testi.txt "r" avaa luku tilaan
 tiedosto = open("testi.txt", "w")                       <--->   Avaa tiedoston kirjoitus tilaan
@@ -461,11 +470,13 @@ def myfunktio():                                        <--->   Funktio määrit
 ********************************************************************************************************************************
 
 
-!!! Penetration Testing kohdan käytetyt menetelmät ovat väärin käytettynä laittomia, käytä omalla vastuulla. !!!
 ________________________________________________________________________________________________________________________________
+
+!!! Penetration Testing kohdan kaytetyt menetelmat ovat vaarin kaytettyna laittomia, kayta omalla vastuulla. !!!
 
 Penetration Testing
 ________________________________________________________________________________________________________________________________
+
 
 ** Muistio **
 
@@ -746,7 +757,7 @@ pwdump SYSTEM SAM > /kansio/.txt		<--->	Dumpaa salasa hashit luottavaan muotoon
 hashcat -v -m 1000 windowshash rockyou.txt	<--->	SAM hash crackaus
 
 
-
+!!! Penetration Testing kohdan kaytetyt menetelmat ovat vaarin kaytettyna laittomia, kayta omalla vastuulla. !!!
 ________________________________________________________________________________________________________________________________
 
 SOURCES:
