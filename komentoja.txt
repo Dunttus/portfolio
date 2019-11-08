@@ -60,6 +60,8 @@ history			<--->	Nayttaa vanhat kommennot
 find -printf "%T+ %p\n"|sort				<--->   Kertoo asennetujne ohjelmien ajan jarjesteksyssa
 find -printf '%T+ M %p\n%A+ A %p\n%C+ C %p\n'|sort	<--->	Kertoo asennettujen ohjelmien ajan jarjestyksessa
 find /home -printf "%f\t%p\t%u\t%g\m\n" | column -t	<--->	Hakee home kansion kaikki tiedostot
+find / -group adm -ls 2>/dev/null			<--->	Ryhma oikeuksien haku
+find / -user joni -ls 2>/dev/null			<--->	Tiedostojen user oikeuksien haku
 ________________________________________________________________________________________________________________________________
 *** TIEDOSTOJEN LATAUS ***
 apt-get update			<--->	Paivittaa palvelimelle ohejelmitojen versio tiedot
@@ -120,7 +122,7 @@ ssh user@dunttus.com -p 2121			<--->	Jos SSHn portti vaihdettu vaikka 2121
 
 sudo adduser joni				<--->	Luo kayttajan joni
 sudo adduser joni sudo				<--->	Lisaa kayttajalle joni sudo oikeuden
-sudo adduser joni admin				<--->	Lisaa kayttajan joni admineihin
+sudo adduser joni adm				<--->	Lisaa kayttajan joni admineihin
 sudo userdel joni				<--->	Poistaa kayttajan
 
 sudo usermod --lock root			<--->	Lukitsee root salasanan
