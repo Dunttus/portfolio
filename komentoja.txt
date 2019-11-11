@@ -45,6 +45,8 @@ cp -rp			<--->	RP lipuilla kopioidaan myos tiedoston oikeudet
 /etc			<--->	kaikkien ohjelmien asetuksien kansio
 /var/log/auth.log	<--->	Kirjautumis loki tiedosto
 
+/etc/systemd/system	<--->	Uudelleen käynnistyksessä päälle tulevat ohjelmistot
+
 ________________________________________________________________________________________________________________________________
 *** HAKUTOIMINTO *** 
 alt+.			<--->   viimeisen komennon viimeinen sana
@@ -85,6 +87,7 @@ ________________________________________________________________________________
 CTRL + C		<--->	Yleisesti sulkee ohjelmia
 WINDOWS + T		<--->	Avaa terminaalin
 WINDOWS + Z		<--->	Sammuttaa toimintoja ilde tilaan takaisin "fg"
+jobs			<--->	Nayttaa taustalla pyorivat ohjelmat listana
 fg			<--->	Tuo ctrl+Z suljetun tiedoston takaisin
 q			<--->	Yleisesti sulkee ohjelmia
 
